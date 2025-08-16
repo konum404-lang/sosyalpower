@@ -5,716 +5,727 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sosyal Power</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/stil.css">
-    <style>:root { 
-    --dark-bg: #1a1a1a; 
-    --pale-neon: #00E0FF; 
-    --bright-neon: #00ffff; 
-    --glow-color: rgba(0, 255, 255, 0.7); 
-}
-
-* { 
-    margin: 0; 
-    padding: 0; 
-    box-sizing: border-box; 
-}
-
-body { 
-    background-color: var(--dark-bg); 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-    color: #fff; 
-    overflow-x: hidden; 
-}
-
-.menu-icon { 
-    position: fixed; 
-    top: 20px; 
-    left: 20px; 
-    width: 35px; 
-    height: 30px; 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: space-between; 
-    background: transparent; 
-    border: none; 
-    cursor: pointer; 
-    z-index: 1003; 
-}
-
-.menu-icon span { 
-    display: block; 
-    width: 100%; 
-    height: 3px; 
-    background-color: var(--pale-neon); 
-    border-radius: 3px; 
-    transition: all 0.3s ease-in-out; 
-}
-
-.menu-icon:hover span { 
-    background-color: var(--bright-neon); 
-    box-shadow: 0 0 8px var(--glow-color); 
-}
-
-.menu-icon.open span:nth-child(1) { transform: translateY(13px) rotate(45deg); }
-.menu-icon.open span:nth-child(2) { opacity: 0; }
-.menu-icon.open span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
-
-.top-right-container {
-    position: fixed;
-    top: 20px;
-    right: 25px;
-    z-index: 1003;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-}
-
-.add-video-button {
-    background-color: transparent;
-    border: 2px solid var(--pale-neon);
-    color: var(--pale-neon);
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 50px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-}
-
-.add-video-button:hover {
-    background-color: var(--bright-neon);
-    color: var(--dark-bg);
-    transform: scale(1.1);
-    box-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color);
-}
-
-.notification-bell {
-    color: var(--pale-neon);
-    font-size: 1.8rem;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.notification-bell:hover {
-    color: var(--bright-neon);
-    text-shadow: 0 0 10px var(--glow-color);
-    transform: scale(1.15);
-}
-
-.nav-panel { 
-    position: fixed; 
-    top: 0; 
-    left: 0; 
-    width: 300px; 
-    height: 100vh; 
-    background-color: rgba(26, 26, 26, 0.9); 
-    backdrop-filter: blur(5px); 
-    z-index: 1002; 
-    transform: translateX(-100%); 
-    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-}
-
-.nav-panel.open { 
-    transform: translateX(0); 
-    z-index: 1005; 
-}
-
-.nav-panel ul { 
-    list-style: none; 
-    padding: 0; 
-    width: 100%; 
-}
-
-.nav-panel ul li { 
-    text-align: left; 
-    padding-left: 40px; 
-    margin: 30px 0; 
-}
-
-.nav-panel a { 
-    text-decoration: none; 
-    font-size: 1.5rem; 
-    color: var(--pale-neon); 
-    padding: 10px 0; 
-    transition: color 0.3s ease, text-shadow 0.3s ease; 
-    display: inline-block; 
-}
-
-.nav-panel a:hover { 
-    color: var(--bright-neon); 
-    text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color), 0 0 15px var(--glow-color); 
-}
-
-.nav-panel a.active { 
-    color: var(--bright-neon); 
-    animation: neon-glow 1.5s ease-in-out infinite alternate; 
-}
-
-@keyframes neon-glow { 
-    from { text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color), 0 0 15px var(--glow-color); } 
-    to { text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--glow-color); } 
-}
-
-.content-page { 
-    display: none; 
-    padding: 20px; 
-}
-
-.content-page.active { 
-    display: block; 
-}
-
-.content-page.active.video-section { 
-    display: flex; 
-}
-
-.content { 
-    text-align: center; 
-}
-
-.section-title { 
-    font-size: 2.5rem; 
-    color: var(--bright-neon); 
-    text-align: center; 
-    margin-bottom: 10px; 
-    text-shadow: 0 0 5px var(--glow-color); 
-    animation: neon-glow 1.5s ease-in-out infinite alternate; 
-}
-
-.section-subtitle { 
-    font-size: 1.2rem; 
-    color: var(--pale-neon); 
-    text-align: center; 
-    margin-bottom: 50px; 
-    text-shadow: 0 0 5px var(--pale-neon); 
-    animation: neon-subtitle-pulse 2s ease-in-out infinite alternate; 
-}
-
-.selection-container { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 30px; 
-    align-items: center; 
-    width: 100%; 
-}
-
-.selection-button { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    width: 250px; 
-    height: 120px; 
-    background-color: rgba(30, 30, 30, 0.5); 
-    border: 2px solid transparent; 
-    border-radius: 15px; 
-    text-decoration: none; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
-}
-
-.selection-button .button-text { 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    color: #fff; 
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
-}
-
-.selection-button .button-reward { 
-    font-size: 1rem; 
-    color: var(--pale-neon); 
-    margin-top: 5px; 
-}
-
-.selection-button:hover { 
-    transform: translateY(-5px) scale(1.05); 
-}
-
-.blue-glow { 
-    border-color: #00FFFF; 
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); 
-}
-
-.blue-glow:hover { 
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); 
-}
-
-.purple-glow { 
-    border-color: #9933FF; 
-    box-shadow: 0 0 10px rgba(153, 51, 255, 0.4); 
-}
-
-.purple-glow:hover { 
-    box-shadow: 0 0 20px rgba(153, 51, 255, 0.8), 0 0 30px rgba(153, 51, 255, 0.6); 
-}
-
-.green-glow { 
-    border-color: #39FF14; 
-    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); 
-}
-
-.green-glow:hover { 
-    box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.6); 
-}
-
-.video-section { 
-    flex-direction: column; 
-    align-items: center; 
-    justify-content: center; 
-    padding-top: 50px; 
-}
-
-.video-container { 
-    position: relative; 
-    width: 80%; 
-    max-width: 800px; 
-    padding-bottom: 45%; 
-    background-color: #000; 
-    border-radius: 10px; 
-    overflow: hidden; 
-    box-shadow: 0 0 10px var(--bright-neon), 0 0 20px var(--bright-neon); 
-    animation: neon-ambiance 3s ease-in-out infinite alternate; 
-}
-
-@keyframes neon-ambiance { 
-    from { box-shadow: 0 0 10px var(--bright-neon), 0 0 20px var(--bright-neon); } 
-    to { box-shadow: 0 0 15px var(--bright-neon), 0 0 30px var(--bright-neon), 0 0 45px var(--bright-neon); } 
-}
-
-.video-container iframe { 
-    position: absolute; 
-    top: 0; 
-    left: 0; 
-    width: 100%; 
-    height: 100%; 
-}
-
-.video-controls { 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 30px; 
-    margin-top: 30px; 
-}
-
-.nav-button { 
-    background: transparent; 
-    border: none; 
-    cursor: pointer; 
-    color: var(--bright-neon); 
-    font-size: 2rem; 
-    transition: color 0.3s ease, text-shadow 0.3s ease; 
-}
-
-.nav-button:hover { 
-    color: var(--bright-neon); 
-    text-shadow: 0 0 10px var(--glow-color); 
-}
-
-.timer-display { 
-    font-size: 3rem; 
-    font-weight: bold; 
-    color: #fff; 
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
-    min-width: 150px; 
-    text-align: center; 
-    position: relative; 
-}
-
-#start-button { 
-    position: absolute; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: #00FFFF; 
-    border-color: #00FFFF; 
-    color: #000; 
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); 
-    padding: 10px 20px; 
-    border-radius: 50px; 
-    font-size: 1.2rem; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
-    display: none; 
-}
-
-#start-button.active { 
-    display: block; 
-}
-
-.timer-normal { 
-    color: var(--bright-neon); 
-}
-
-.timer-warning { 
-    color: #9933FF; 
-    text-shadow: 0 0 10px #9933FF; 
-    animation: pulse-purple 1s infinite alternate; 
-}
-
-.timer-critical { 
-    color: #FF0000; 
-    text-shadow: 0 0 10px #FF0000; 
-    animation: pulse-red 0.5s infinite alternate; 
-}
-
-@keyframes pulse-purple { 
-    from { text-shadow: 0 0 5px #9933FF; } 
-    to { text-shadow: 0 0 15px #9933FF; } 
-}
-
-@keyframes pulse-red { 
-    from { text-shadow: 0 0 5px #FF0000; } 
-    to { text-shadow: 0 0 15px #FF0000; } 
-}
-
-.completed-button { 
-    background-color: rgba(60, 60, 60, 0.5); 
-    border: 2px solid var(--pale-neon); 
-    color: var(--pale-neon); 
-    padding: 15px 40px; 
-    font-size: 1.2rem; 
-    font-weight: bold; 
-    border-radius: 50px; 
-    cursor: not-allowed; 
-    margin-top: 40px; 
-    transition: all 0.3s ease; 
-}
-
-.completed-button.active { 
-    background-color: #39FF14; 
-    border-color: #39FF14; 
-    color: #000; 
-    box-shadow: 0 0 15px rgba(57, 255, 20, 0.6); 
-    cursor: pointer; 
-}
-
-.completed-button.active:hover { 
-    transform: scale(1.05); 
-    box-shadow: 0 0 25px rgba(57, 255, 20, 0.8); 
-}
-
-.reward-message { 
-    position: fixed; 
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
-    background-color: rgba(0, 0, 0, 0.8); 
-    backdrop-filter: blur(5px); 
-    padding: 20px 40px; 
-    border-radius: 10px; 
-    font-size: 2rem; 
-    font-weight: bold; 
-    color: #FFD700; 
-    border: 2px solid #FFD700; 
-    box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); 
-    text-align: center; 
-    opacity: 0; 
-    transition: opacity 0.5s ease; 
-    z-index: 2000; 
-}
-
-.reward-message.show { 
-    animation: show-message 3s forwards; 
-}
-
-@keyframes show-message { 
-    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } 
-    15% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } 
-    85% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 
-    100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } 
-}
-
-.hero-section { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    text-align: center; 
-    height: 100vh; 
-    padding: 0 20px; 
-    position: relative; 
-    overflow: hidden; 
-    background-color: var(--dark-bg); 
-}
-
-#particles-js { 
-    position: absolute; 
-    width: 100%; 
-    height: 100%; 
-    top: 0; 
-    left: 0; 
-    z-index: 1; 
-}
-
-.hero-title, .hero-subtitle, .hero-button, .hero-subtitle-2 { 
-    position: relative; 
-    z-index: 3; 
-}
-
-.hero-title {
-    font-size: 4rem;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF;
-    animation: neon-flicker 1.5s ease-in-out infinite alternate;
-    margin-bottom: 20px;
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    color: var(--pale-neon);
-    text-shadow: 0 0 5px var(--pale-neon);
-    animation: neon-subtitle-pulse 2s ease-in-out infinite alternate;
-    margin-bottom: 10px;
-}
-
-.hero-subtitle-2 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #FFD700;
-    margin-bottom: 40px;
-    text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6);
-    animation: neon-subtitle-pulse-2 2s ease-in-out infinite alternate;
-}
-
-@keyframes neon-flicker {
-    from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF; }
-    to { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF; }
-}
-
-@keyframes neon-subtitle-pulse { 
-    from { text-shadow: 0 0 3px var(--pale-neon), 0 0 5px var(--pale-neon); } 
-    to { text-shadow: 0 0 5px var(--pale-neon), 0 0 10px var(--pale-neon); } 
-}
-
-@keyframes neon-subtitle-pulse-2 { 
-    from { text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6); } 
-    to { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6); } 
-}
-
-.hero-buttons-container { 
-    display: flex; 
-    gap: 20px; 
-}
-
-.hero-button { 
-    background-color: transparent; 
-    border: 2px solid #39FF14; 
-    color: #39FF14; 
-    padding: 15px 40px; 
-    font-size: 1.2rem; 
-    font-weight: bold; 
-    border-radius: 50px; 
-    text-decoration: none; 
-    transition: all 0.3s ease; 
-    box-shadow: 0 0 10px rgba(57, 255, 20, 0.6); 
-}
-
-.hero-button:hover { 
-    background-color: #39FF14; 
-    color: #000; 
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.6); 
-}
-
-.hero-button-2 { 
-    background-color: transparent; 
-    border: 2px solid #9933FF; 
-    color: #9933FF; 
-    padding: 15px 40px; 
-    font-size: 1.2rem; 
-    font-weight: bold; 
-    border-radius: 50px; 
-    text-decoration: none; 
-    transition: all 0.3s ease; 
-    box-shadow: 0 0 10px rgba(153, 51, 255, 0.6); 
-}
-
-.hero-button-2:hover { 
-    background-color: #9933FF; 
-    color: #000; 
-    transform: scale(1.1); 
-    box-shadow: 0 0 20px rgba(153, 51, 255, 0.8), 0 0 30px rgba(153, 51, 255, 0.6); 
-}
-
-.subscription-button, .like-button { 
-    display: flex; 
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
-    width: 250px; 
-    height: 120px; 
-    background-color: rgba(30, 30, 30, 0.5); 
-    border: 2px solid transparent; 
-    border-radius: 15px; 
-    text-decoration: none; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
-}
-
-.subscription-button .button-text, .like-button .button-text { 
-    font-size: 1.5rem; 
-    font-weight: bold; 
-    color: #fff; 
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
-}
-
-.subscription-button .button-reward, .like-button .button-reward { 
-    font-size: 1rem; 
-    color: var(--pale-neon); 
-    margin-top: 5px; 
-}
-
-.subscription-button:hover, .like-button:hover { 
-    transform: translateY(-5px) scale(1.05); 
-}
-
-.sub-blue-glow { border-color: #00FFFF; box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
-.sub-blue-glow:hover { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
-.sub-purple-glow { border-color: #9933FF; box-shadow: 0 0 10px rgba(153, 51, 255, 0.4); }
-.sub-purple-glow:hover { box-shadow: 0 0 20px rgba(153, 51, 255, 0.8), 0 0 30px rgba(153, 51, 255, 0.6); }
-.sub-green-glow { border-color: #39FF14; box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
-.sub-green-glow:hover { box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.6); }
-.like-blue-glow { border-color: #00FFFF; box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
-.like-blue-glow:hover { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
-
-.packages-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 50px;
-}
-
-.package-card {
-    background-color: rgba(30, 30, 30, 0.5);
-    border-radius: 15px;
-    padding: 30px;
-    width: 350px;
-    text-align: center;
-    position: relative;
-    transition: all 0.3s ease;
-    display: flex;
-    flex-direction: column;
-}
-
-.package-card:hover {
-    transform: translateY(-10px) scale(1.05);
-}
-
-.card-blue { border: 2px solid #00FFFF; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); }
-.card-blue:hover { box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6); }
-.card-purple { border: 2px solid #9933FF; box-shadow: 0 0 15px rgba(153, 51, 255, 0.5); }
-.card-purple:hover { box-shadow: 0 0 25px rgba(153, 51, 255, 0.8), 0 0 40px rgba(153, 51, 255, 0.6); }
-.card-green { border: 2px solid #39FF14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.5); }
-.card-green:hover { box-shadow: 0 0 25px rgba(57, 255, 20, 0.8), 0 0 40px rgba(57, 255, 20, 0.6); }
-
-.package-title {
-    font-size: 2rem;
-    font-weight: bold;
-    margin-bottom: 20px;
-    animation: flicker-title 3s infinite;
-}
-
-@keyframes flicker-title {
-    0%, 18%, 22%, 25%, 53%, 57%, 100% {
-        text-shadow: 0 0 4px, 0 0 11px, 0 0 19px, 0 0 40px, 0 0 80px;
-        opacity: 1;
-    }
-    20%, 24%, 55% { 
-        text-shadow: none;
-        opacity: 0.8;
-    }
-}
-
-.title-blue { color: #00FFFF; text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF; }
-.title-purple { color: #C07CFF; text-shadow: 0 0 5px #C07CFF, 0 0 10px #C07CFF; }
-.title-green { color: #39FF14; text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14; }
-
-.package-description {
-    font-size: 1.1rem;
-    margin-bottom: 25px;
-    font-style: italic;
-    min-height: 80px;
-}
-
-.description-blue { color: #99FFFF; text-shadow: 0 0 3px #00E0FF, 0 0 5px #00E0FF; }
-.description-purple { color: #E6C6FF; text-shadow: 0 0 3px #9933FF, 0 0 5px #9933FF; }
-.description-green { color: #AFFF9B; text-shadow: 0 0 3px #39FF14, 0 0 5px #39FF14; }
-
-.package-details {
-    font-size: 1.2rem;
-    margin-bottom: 15px;
-    font-weight: bold;
-}
-
-.details-blue { color: #00FFFF; text-shadow: 0 0 4px #00FFFF, 0 0 8px #00FFFF, 0 0 12px #00FFFF; }
-.details-purple { color: #C07CFF; text-shadow: 0 0 4px #9933FF, 0 0 8px #9933FF, 0 0 12px #9933FF; }
-.details-green { color: #39FF14; text-shadow: 0 0 4px #39FF14, 0 0 8px #39FF14, 0 0 12px #39FF14; }
-
-.package-cost {
-    font-size: 1.8rem;
-    font-weight: bold;
-    margin-top: auto;
-    padding-top: 20px;
-}
-
-.cost-green { color: #39FF14; text-shadow: 0 0 8px #39FF14; }
-
-.buy-button {
-    background-color: transparent;
-    border: 2px solid;
-    padding: 12px 30px;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 50px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 25px;
-    text-shadow: 0 0 3px; 
-}
-
-.button-blue { border-color: #00FFFF; color: #00FFFF; animation: flicker-blue 1.5s ease-in-out infinite alternate; }
-.button-blue:hover { background-color: #00FFFF; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
-@keyframes flicker-blue { 
-    0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); text-shadow: 0 0 4px #00FFFF; } 
-    50% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); text-shadow: 0 0 8px #00FFFF; } 
-}
-
-.button-purple { border-color: #9933FF; color: #9933FF; animation: flicker-purple 1.5s ease-in-out infinite alternate; }
-.button-purple:hover { background-color: #9933FF; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
-@keyframes flicker-purple { 
-    0%, 100% { box-shadow: 0 0 10px rgba(153, 51, 255, 0.6); text-shadow: 0 0 4px #9933FF; } 
-    50% { box-shadow: 0 0 15px rgba(153, 51, 255, 0.8); text-shadow: 0 0 8px #9933FF; } 
-}
-
-.button-green { border-color: #39FF14; color: #39FF14; animation: flicker-green 1.5s ease-in-out infinite alternate; }
-.button-green:hover { background-color: #39FF14; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
-@keyframes flicker-green { 
-    0%, 100% { box-shadow: 0 0 10px rgba(57, 255, 20, 0.6); text-shadow: 0 0 4px #39FF14; } 
-    50% { box-shadow: 0 0 15px rgba(57, 255, 20, 0.8); text-shadow: 0 0 8px #39FF14; } 
-}
-
-.coin-icon {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 1.5rem;
-    color: #FFD700;
-    text-shadow: 0 0 5px #FFD700;
-    animation: coin-move 2s ease-in-out infinite alternate;
-}
-
-@keyframes coin-move { 
-    from { transform: translateY(0); } 
-    to { transform: translateY(-5px); } 
-
-}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --dark-bg: #1a1a1a; 
+            --pale-neon: #00E0FF; 
+            --bright-neon: #00ffff; 
+            --glow-color: rgba(0, 255, 255, 0.7); 
+        }
+
+        * { 
+            margin: 0; 
+            padding: 0; 
+            box-sizing: border-box; 
+        }
+
+        body { 
+            background-color: var(--dark-bg); 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            color: #fff; 
+            overflow-x: hidden; 
+        }
+
+        .menu-icon { 
+            position: fixed; 
+            top: 20px; 
+            left: 20px; 
+            width: 35px; 
+            height: 30px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            background: transparent; 
+            border: none; 
+            cursor: pointer; 
+            z-index: 1003; 
+        }
+
+        .menu-icon span { 
+            display: block; 
+            width: 100%; 
+            height: 3px; 
+            background-color: var(--pale-neon); 
+            border-radius: 3px; 
+            transition: all 0.3s ease-in-out; 
+        }
+
+        .menu-icon:hover span { 
+            background-color: var(--bright-neon); 
+            box-shadow: 0 0 8px var(--glow-color); 
+        }
+
+        .menu-icon.open span:nth-child(1) { transform: translateY(13px) rotate(45deg); }
+        .menu-icon.open span:nth-child(2) { opacity: 0; }
+        .menu-icon.open span:nth-child(3) { transform: translateY(-14px) rotate(-45deg); }
+
+        .top-right-container {
+            position: fixed;
+            top: 20px;
+            right: 25px;
+            z-index: 1003;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .add-video-button {
+            background-color: transparent;
+            border: 2px solid var(--pale-neon);
+            color: var(--pale-neon);
+            padding: 10px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+        }
+
+        .add-video-button:hover {
+            background-color: var(--bright-neon);
+            color: var(--dark-bg);
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--glow-color), 0 0 25px var(--glow-color);
+        }
+
+        .notification-bell {
+            color: var(--pale-neon);
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .notification-bell:hover {
+            color: var(--bright-neon);
+            text-shadow: 0 0 10px var(--glow-color);
+            transform: scale(1.15);
+        }
+
+        .nav-panel { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 300px; 
+            height: 100vh; 
+            background-color: rgba(26, 26, 26, 0.9); 
+            backdrop-filter: blur(5px); 
+            z-index: 1002; 
+            transform: translateX(-100%); 
+            transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+        }
+
+        .nav-panel.open { 
+            transform: translateX(0); 
+            z-index: 1005; 
+        }
+
+        .nav-panel ul { 
+            list-style: none; 
+            padding: 0; 
+            width: 100%; 
+        }
+
+        .nav-panel ul li { 
+            text-align: left; 
+            padding-left: 40px; 
+            margin: 30px 0; 
+        }
+
+        .nav-panel a { 
+            text-decoration: none; 
+            font-size: 1.5rem; 
+            color: var(--pale-neon); 
+            padding: 10px 0; 
+            transition: color 0.3s ease, text-shadow 0.3s ease; 
+            display: inline-block; 
+        }
+
+        .nav-panel a:hover { 
+            color: var(--bright-neon); 
+            text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color), 0 0 15px var(--glow-color); 
+        }
+
+        .nav-panel a.active { 
+            color: var(--bright-neon); 
+            animation: neon-glow 1.5s ease-in-out infinite alternate; 
+        }
+
+        @keyframes neon-glow { 
+            from { text-shadow: 0 0 5px var(--glow-color), 0 0 10px var(--glow-color), 0 0 15px var(--glow-color); } 
+            to { text-shadow: 0 0 10px var(--glow-color), 0 0 20px var(--glow-color), 0 0 30px var(--glow-color); } 
+        }
+
+        .content-page { 
+            display: none; 
+            padding: 20px; 
+        }
+
+        .content-page.active { 
+            display: block; 
+        }
+
+        .content-page.active.video-section { 
+            display: flex; 
+        }
+
+        .content { 
+            text-align: center; 
+        }
+
+        .section-title { 
+            font-size: 2.5rem; 
+            color: var(--bright-neon); 
+            text-align: center; 
+            margin-bottom: 10px; 
+            text-shadow: 0 0 5px var(--glow-color); 
+            animation: neon-glow 1.5s ease-in-out infinite alternate; 
+        }
+
+        .section-subtitle { 
+            font-size: 1.2rem; 
+            color: var(--pale-neon); 
+            text-align: center; 
+            margin-bottom: 50px; 
+            text-shadow: 0 0 5px var(--pale-neon); 
+            animation: neon-subtitle-pulse 2s ease-in-out infinite alternate; 
+        }
+
+        .selection-container { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 30px; 
+            align-items: center; 
+            width: 100%; 
+        }
+
+        .selection-button { 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            width: 250px; 
+            height: 120px; 
+            background-color: rgba(30, 30, 30, 0.5); 
+            border: 2px solid transparent; 
+            border-radius: 15px; 
+            text-decoration: none; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; 
+        }
+
+        .selection-button .button-text { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: #fff; 
+            text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); 
+        }
+
+        .selection-button .button-reward { 
+            font-size: 1rem; 
+            color: var(--pale-neon); 
+            margin-top: 5px; 
+        }
+
+        .selection-button:hover { 
+            transform: translateY(-5px) scale(1.05); 
+        }
+
+        .blue-glow { border-color: #00FFFF; box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+        .blue-glow:hover { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
+        .purple-glow { border-color: #9933FF; box-shadow: 0 0 10px rgba(153, 51, 255, 0.4); }
+        .purple-glow:hover { box-shadow: 0 0 20px rgba(153, 51, 255, 0.8), 0 0 30px rgba(153, 51, 255, 0.6); }
+        .green-glow { border-color: #39FF14; box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
+        .green-glow:hover { box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.6); }
+
+        .video-section { 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            padding-top: 50px; 
+        }
+
+        .video-container { 
+            position: relative; 
+            width: 80%; 
+            max-width: 800px; 
+            padding-bottom: 45%; 
+            background-color: #000; 
+            border-radius: 10px; 
+            overflow: hidden; 
+            box-shadow: 0 0 10px var(--bright-neon), 0 0 20px var(--bright-neon); 
+            animation: neon-ambiance 3s ease-in-out infinite alternate; 
+        }
+
+        @keyframes neon-ambiance { 
+            from { box-shadow: 0 0 10px var(--bright-neon), 0 0 20px var(--bright-neon); } 
+            to { box-shadow: 0 0 15px var(--bright-neon), 0 0 30px var(--bright-neon), 0 0 45px var(--bright-neon); } 
+        }
+
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .video-controls { display: flex; justify-content: center; align-items: center; gap: 30px; margin-top: 30px; }
+        .nav-button { background: transparent; border: none; cursor: pointer; color: var(--bright-neon); font-size: 2rem; transition: color 0.3s ease, text-shadow 0.3s ease; }
+        .nav-button:hover { color: var(--bright-neon); text-shadow: 0 0 10px var(--glow-color); }
+        .timer-display { font-size: 3rem; font-weight: bold; color: #fff; text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); min-width: 150px; text-align: center; position: relative; }
+
+        #start-button { 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background-color: #00FFFF; 
+            border-color: #00FFFF; 
+            color: #000; 
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); 
+            padding: 10px 20px; 
+            border-radius: 50px; 
+            font-size: 1.2rem; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            display: none; 
+        }
+        #start-button.active { display: block; }
+        .timer-normal { color: var(--bright-neon); }
+        .timer-warning { color: #9933FF; text-shadow: 0 0 10px #9933FF; animation: pulse-purple 1s infinite alternate; }
+        .timer-critical { color: #FF0000; text-shadow: 0 0 10px #FF0000; animation: pulse-red 0.5s infinite alternate; }
+
+        @keyframes pulse-purple { from { text-shadow: 0 0 5px #9933FF; } to { text-shadow: 0 0 15px #9933FF; } }
+        @keyframes pulse-red { from { text-shadow: 0 0 5px #FF0000; } to { text-shadow: 0 0 15px #FF0000; } }
+
+        .completed-button { background-color: rgba(60, 60, 60, 0.5); border: 2px solid var(--pale-neon); color: var(--pale-neon); padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; cursor: not-allowed; margin-top: 40px; transition: all 0.3s ease; }
+        .completed-button.active { background-color: #39FF14; border-color: #39FF14; color: #000; box-shadow: 0 0 15px rgba(57, 255, 20, 0.6); cursor: pointer; }
+        .completed-button.active:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(57, 255, 20, 0.8); }
+
+        .reward-message { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(0, 0, 0, 0.8); backdrop-filter: blur(5px); padding: 20px 40px; border-radius: 10px; font-size: 2rem; font-weight: bold; color: #FFD700; border: 2px solid #FFD700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.6); text-align: center; opacity: 0; transition: opacity 0.5s ease; z-index: 2000; }
+        .reward-message.show { animation: show-message 3s forwards; }
+        @keyframes show-message { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); } 15% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); } 85% { opacity: 1; transform: translate(-50%, -50%) scale(1); } 100% { opacity: 0; transform: translate(-50%, -50%) scale(1); } }
+
+        .hero-section { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; height: 100vh; padding: 0 20px; position: relative; overflow: hidden; background-color: var(--dark-bg); }
+        #particles-js { position: absolute; width: 100%; height: 100%; top: 0; left: 0; z-index: 1; }
+        .hero-title, .hero-subtitle, .hero-button, .hero-subtitle-2 { position: relative; z-index: 3; }
+        .hero-title { font-size: 4rem; font-weight: bold; color: #fff; text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF; animation: neon-flicker 1.5s ease-in-out infinite alternate; margin-bottom: 20px; }
+        .hero-subtitle { font-size: 1.5rem; color: var(--pale-neon); text-shadow: 0 0 5px var(--pale-neon); animation: neon-subtitle-pulse 2s ease-in-out infinite alternate; margin-bottom: 10px; }
+        .hero-subtitle-2 { font-size: 1.2rem; font-weight: bold; color: #FFD700; margin-bottom: 40px; text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6); animation: neon-subtitle-pulse-2 2s ease-in-out infinite alternate; }
+        @keyframes neon-flicker { from { text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #228DFF, 0 0 70px #228DFF, 0 0 80px #228DFF, 0 0 100px #228DFF, 0 0 150px #228DFF; } to { text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #228DFF, 0 0 35px #228DFF, 0 0 40px #228DFF, 0 0 50px #228DFF, 0 0 75px #228DFF; } }
+        @keyframes neon-subtitle-pulse { from { text-shadow: 0 0 3px var(--pale-neon), 0 0 5px var(--pale-neon); } to { text-shadow: 0 0 5px var(--pale-neon), 0 0 10px var(--pale-neon); } }
+        @keyframes neon-subtitle-pulse-2 { from { text-shadow: 0 0 5px rgba(255, 215, 0, 0.8), 0 0 10px rgba(255, 215, 0, 0.6); } to { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6); } }
+
+        .hero-buttons-container { display: flex; gap: 20px; }
+        .hero-button { background-color: transparent; border: 2px solid #39FF14; color: #39FF14; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(57, 255, 20, 0.6); }
+        .hero-button:hover { background-color: #39FF14; color: #000; transform: scale(1.1); box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.6); }
+        .hero-button-2 { background-color: transparent; border: 2px solid #9933FF; color: #9933FF; padding: 15px 40px; font-size: 1.2rem; font-weight: bold; border-radius: 50px; text-decoration: none; transition: all 0.3s ease; box-shadow: 0 0 10px rgba(153, 51, 255, 0.6); }
+        .hero-button-2:hover { background-color: #9933FF; color: #000; transform: scale(1.1); box-shadow: 0 0 20px rgba(153, 51, 255, 0.8), 0 0 30px rgba(153, 51, 255, 0.6); }
+
+        .subscription-button, .like-button { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 250px; height: 120px; background-color: rgba(30, 30, 30, 0.5); border: 2px solid transparent; border-radius: 15px; text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; }
+        .subscription-button .button-text, .like-button .button-text { font-size: 1.5rem; font-weight: bold; color: #fff; text-shadow: 0 0 5px rgba(255, 255, 255, 0.5); }
+        .subscription-button .button-reward, .like-button .button-reward { font-size: 1rem; color: var(--pale-neon); margin-top: 5px; }
+        .subscription-button:hover, .like-button:hover { transform: translateY(-5px) scale(1.05); }
+
+        .sub-blue-glow { border-color: #00FFFF; box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+        .sub-blue-glow:hover { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
+        .sub-purple-glow { border-color: #9933FF; box-shadow: 0 0 10px rgba(153, 51, 255, 0.4); }
+        .sub-purple-glow:hover { box-shadow: 0 0 20px rgba(153, 51, 255, 0.8), 0 0 30px rgba(153, 51, 255, 0.6); }
+        .sub-green-glow { border-color: #39FF14; box-shadow: 0 0 10px rgba(57, 255, 20, 0.4); }
+        .sub-green-glow:hover { box-shadow: 0 0 20px rgba(57, 255, 20, 0.8), 0 0 30px rgba(57, 255, 20, 0.6); }
+        .like-blue-glow { border-color: #00FFFF; box-shadow: 0 0 10px rgba(0, 255, 255, 0.4); }
+        .like-blue-glow:hover { box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); }
+
+        /* == KEŞFET PAKETİ BÖLÜMÜ BAŞLANGIÇ == */
+        #kesfet-paketi {
+            padding-top: 60px;
+            padding-bottom: 60px;
+            background-color: #10101a;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #packages-particles-js {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        #kesfet-paketi > *:not(#packages-particles-js) {
+            position: relative;
+            z-index: 2;
+        }
+
+        #kesfet-paketi .section-title,
+        #kesfet-paketi .package-title {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        #kesfet-paketi .section-subtitle,
+        #kesfet-paketi .package-description,
+        #kesfet-paketi .package-features li,
+        #kesfet-paketi .buy-button {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+        }
+
+        .packages-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .package-card {
+            background-color: rgba(30, 30, 30, 0.5);
+            border-radius: 15px;
+            padding: 30px;
+            width: 350px;
+            text-align: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            border-width: 2px;
+            border-style: solid;
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 0.8s ease-out forwards;
+            overflow: hidden;
+            justify-content: space-between;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .package-card:nth-child(1) { animation-delay: 0.2s; }
+        .package-card:nth-child(2) { animation-delay: 0.4s; }
+        .package-card:nth-child(3) { animation-delay: 0.6s; }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card-blue { border-color: #00FFFF; box-shadow: 0 0 15px rgba(0, 255, 255, 0.5); }
+        .card-blue:hover { box-shadow: 0 0 25px rgba(0, 255, 255, 0.8), 0 0 40px rgba(0, 255, 255, 0.6); }
+        .card-purple { border-color: #9933FF; box-shadow: 0 0 15px rgba(153, 51, 255, 0.5); }
+        .card-purple:hover { box-shadow: 0 0 25px rgba(153, 51, 255, 0.8), 0 0 40px rgba(153, 51, 255, 0.6); }
+        .card-green { border-color: #39FF14; box-shadow: 0 0 15px rgba(57, 255, 20, 0.5); }
+        .card-green:hover { box-shadow: 0 0 25px rgba(57, 255, 20, 0.8), 0 0 40px rgba(57, 255, 20, 0.6); }
+
+        .package-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: flicker-title 3s infinite;
+        }
+
+        @keyframes flicker-title {
+            0%, 18%, 22%, 25%, 53%, 57%, 100% {
+                text-shadow: 0 0 4px, 0 0 11px, 0 0 19px, 0 0 40px, 0 0 80px;
+                opacity: 1;
+            }
+            20%, 24%, 55% { 
+                text-shadow: none;
+                opacity: 0.8;
+            }
+        }
+
+        .title-blue { color: #00FFFF; text-shadow: 0 0 5px #00FFFF, 0 0 10px #00FFFF; }
+        .title-purple { color: #C07CFF; text-shadow: 0 0 5px #C07CFF, 0 0 10px #C07CFF; }
+        .title-green { color: #39FF14; text-shadow: 0 0 5px #39FF14, 0 0 10px #39FF14; }
+
+        .package-description { font-size: 1.1rem; margin-bottom: 25px; font-style: italic; min-height: 80px; }
+        .description-blue { color: #99FFFF; text-shadow: 0 0 3px #00E0FF, 0 0 5px #00E0FF; }
+        .description-purple { color: #E6C6FF; text-shadow: 0 0 3px #9933FF, 0 0 5px #9933FF; }
+        .description-green { color: #AFFF9B; text-shadow: 0 0 3px #39FF14, 0 0 5px #39FF14; }
+
+        .package-details { font-size: 1.2rem; margin-bottom: 15px; font-weight: bold; }
+        .details-blue { color: #00FFFF; text-shadow: 0 0 4px #00FFFF, 0 0 8px #00FFFF, 0 0 12px #00FFFF; }
+        .details-purple { color: #C07CFF; text-shadow: 0 0 4px #9933FF, 0 0 8px #9933FF, 0 0 12px #9933FF; }
+        .details-green { color: #39FF14; text-shadow: 0 0 4px #39FF14, 0 0 8px #39FF14, 0 0 12px #39FF14; }
+        
+        .package-footer {
+            margin-top: auto;
+            padding-top: 20px;
+        }
+
+        .package-cost {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .cost-green { color: #39FF14; text-shadow: 0 0 8px #39FF14; }
+
+        .buy-button { 
+            background-color: transparent; 
+            border: 2px solid; 
+            padding: 12px 30px; 
+            font-size: 1.2rem; 
+            font-weight: bold; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            cursor: pointer; 
+            transition: all 0.3s ease; 
+            text-shadow: 0 0 3px; 
+            position: relative; 
+            overflow: hidden; 
+        }
+        .buy-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); transform: skewX(-30deg); transition: left 0.7s ease; }
+        .buy-button:hover::before { left: 150%; }
+        .buy-button:active { transform: scale(0.95) !important; box-shadow: none; }
+        .button-blue { border-color: #00FFFF; color: #00FFFF; animation: flicker-blue 1.5s ease-in-out infinite alternate; }
+        .button-blue:hover { background-color: #00FFFF; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
+        @keyframes flicker-blue { 0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); text-shadow: 0 0 4px #00FFFF; } 50% { box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); text-shadow: 0 0 8px #00FFFF; } }
+        .button-purple { border-color: #9933FF; color: #9933FF; animation: flicker-purple 1.5s ease-in-out infinite alternate; }
+        .button-purple:hover { background-color: #9933FF; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
+        @keyframes flicker-purple { 0%, 100% { box-shadow: 0 0 10px rgba(153, 51, 255, 0.6); text-shadow: 0 0 4px #9933FF; } 50% { box-shadow: 0 0 15px rgba(153, 51, 255, 0.8); text-shadow: 0 0 8px #9933FF; } }
+        .button-green { border-color: #39FF14; color: #39FF14; animation: flicker-green 1.5s ease-in-out infinite alternate; }
+        .button-green:hover { background-color: #39FF14; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
+        @keyframes flicker-green { 0%, 100% { box-shadow: 0 0 10px rgba(57, 255, 20, 0.6); text-shadow: 0 0 4px #39FF14; } 50% { box-shadow: 0 0 15px rgba(57, 255, 20, 0.8); text-shadow: 0 0 8px #39FF14; } }
+
+        .coin-icon { position: absolute; top: 15px; right: 15px; font-size: 1.5rem; color: #FFD700; text-shadow: 0 0 5px #FFD700; animation: coin-move 2s ease-in-out infinite alternate; }
+        @keyframes coin-move { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+
+        .package-card.popular { transform: scale(1.05) translateY(40px); border-color: #FFD700; box-shadow: 0 0 30px rgba(255, 215, 0, 0.6), 0 0 50px rgba(255, 215, 0, 0.4); }
+        .popular-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background-color: #FFD700; color: #000; padding: 5px 20px; border-radius: 50px; font-size: 1rem; font-weight: bold; box-shadow: 0 5px 10px rgba(0,0,0,0.2); animation: pulse-yellow 2s infinite alternate; }
+        @keyframes pulse-yellow { from { transform: translateX(-50%) scale(1); box-shadow: 0 0 10px #FFD700; } to { transform: translateX(-50%) scale(1.1); box-shadow: 0 0 20px #FFD700, 0 0 30px #FFD700; } }
+
+        .package-features { list-style: none; padding: 0; margin: 20px 0; text-align: left; min-height: 120px; }
+        .package-features li { margin-bottom: 12px; font-size: 1.1rem; color: #ddd; display: flex; align-items: center; }
+        .package-features li i { margin-right: 10px; font-size: 1.2rem; }
+        .package-features li .fa-check-circle { color: #39FF14; }
+        .package-features li .fa-star { color: #FFD700; }
+        .package-features li .fa-rocket { color: #00E0FF; }
+
+        .testimonials-section { margin-top: 100px; border-top: 2px solid rgba(0, 255, 255, 0.2); padding-top: 50px; }
+        .testimonials-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
+        .testimonial-card { background-color: rgba(30, 30, 30, 0.5); border: 1px solid var(--pale-neon); padding: 25px; border-radius: 10px; max-width: 400px; box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
+        .testimonial-card blockquote { font-style: italic; font-size: 1.1rem; color: #eee; border-left: 3px solid var(--bright-neon); padding-left: 15px; margin: 0 0 15px 0; }
+        .testimonial-card .author { font-weight: bold; color: var(--bright-neon); text-align: right; display: block; }
+
+        .glowing-hr { border: 0; height: 2px; background-image: linear-gradient(to right, transparent, var(--bright-neon), transparent); margin: 80px auto; width: 80%; box-shadow: 0 0 10px var(--glow-color); }
+        .faq-section { margin-top: 80px; padding-top: 50px; border-top: 2px solid rgba(153, 51, 255, 0.2); }
+        .faq-container { max-width: 800px; margin: 40px auto 0; text-align: left; }
+        .faq-item { background-color: rgba(30, 30, 30, 0.5); border-radius: 10px; margin-bottom: 15px; border: 1px solid rgba(153, 51, 255, 0.6); overflow: hidden; box-shadow: 0 0 15px rgba(153, 51, 255, 0.2); }
+        .faq-question { width: 100%; background: transparent; border: none; padding: 20px; font-size: 1.2rem; color: #fff; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: bold; }
+        .faq-question i { transition: transform 0.3s ease; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
+        .faq-answer p { padding: 0 20px 20px 20px; font-size: 1rem; line-height: 1.6; color: #ccc; }
+        /* == KEŞFET PAKETİ BÖLÜMÜ BİTİŞ == */
+
+        .countdown-ribbon {
+            position: absolute;
+            top: 25px;
+            right: -50px;
+            width: 200px;
+            height: 40px;
+            background-color: #FFD700;
+            transform: rotate(45deg);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+        .countdown-ribbon .countdown-content {
+            color: #000;
+            text-align: center;
+            transform: rotate(0deg);
+            font-weight: bold;
+        }
+        .countdown-ribbon p {
+            font-size: 0.7rem;
+            line-height: 1;
+            margin-bottom: 2px;
+        }
+        #countdown-timer {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+            line-height: 1;
+        }
+        #countdown-timer span {
+            margin: 0 2px;
+        }
+        #countdown-timer span::after {
+            content: ':';
+            position: relative;
+            right: -1px;
+        }
+        #countdown-timer span:last-child::after {
+            content: '';
+        }
+
+        .social-proof {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 15px;
+            animation: pulse-white 3s infinite alternate;
+        }
+        .social-proof i {
+            color: var(--pale-neon);
+            margin-right: 5px;
+        }
+        .social-proof b {
+            color: #fff;
+        }
+        @keyframes pulse-white {
+            from { opacity: 0.8; }
+            to { opacity: 1; }
+        }
+
+        .guarantee-badge {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(57, 255, 20, 0.3);
+            color: #39FF14;
+            font-weight: bold;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        .guarantee-badge i {
+            margin-right: 5px;
+        }
+
+        /* == YENİ EKLENEN/GÜNCELLENEN BÖLÜMLERİN STİLLERİ == */
+        .payment-logos {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            font-size: 2rem;
+            color: #ccc;
+        }
+        
+        .contact-section {
+            margin-top: 80px;
+            padding: 50px 20px;
+            border-top: 2px solid rgba(57, 255, 20, 0.2);
+            text-align: center;
+        }
+        
+        .contact-info p {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 10px;
+        }
+        
+        .contact-info i {
+            color: var(--bright-neon);
+            margin-right: 10px;
+        }
+
+        /* YENİ DESTEK SİSTEMİ STİLLERİ */
+        .support-system-container {
+            max-width: 800px;
+            margin: 40px auto;
+            background-color: rgba(20, 20, 30, 0.7);
+            border: 1px solid var(--pale-neon);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .conversation-history {
+            height: 400px;
+            overflow-y: auto;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            padding: 15px;
+            border-radius: 10px;
+            max-width: 70%;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background-color: #005f73;
+            color: #e9f5f9;
+            align-self: flex-end; /* Kullanıcı mesajları sağda */
+        }
+
+        .support-message {
+            background-color: #3d3d4d;
+            color: #e0e0e0;
+            align-self: flex-start; /* Destek mesajları solda */
+        }
+
+        .message-form .form-group {
+            margin-bottom: 15px;
+        }
+
+        .message-form label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--pale-neon);
+            font-weight: bold;
+        }
+
+        .message-form input[type="text"],
+        .message-form textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .message-form input[type="text"]:focus,
+        .message-form textarea:focus {
+            outline: none;
+            border-color: var(--bright-neon);
+            box-shadow: 0 0 10px var(--glow-color);
+        }
+
+        .message-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .message-form button {
+            background-color: transparent;
+            border: 2px solid #39FF14;
+            color: #39FF14;
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.6);
+            width: 100%;
+        }
+
+        .message-form button:hover {
+            background-color: #39FF14;
+            color: #000;
+            transform: scale(1.02);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
+        }
+
+
     </style>
 </head>
 <body>
@@ -739,7 +750,7 @@ body {
             <li><a href="#abone-ol" class="nav-link">Abone Ol ve Kazan</a></li>
             <li><a href="#begeni" class="nav-link">Beğeni</a></li>
             <li><a href="#kesfet-paketi" class="nav-link">Keşfet Paketi</a></li>
-            <li><a href="#reklam-ver" class="nav-link">Reklam Ver</a></li>
+            <li><a href="#destek-sistemi" class="nav-link">Destek Sistemi</a></li> <li><a href="#reklam-ver" class="nav-link">Reklam Ver</a></li>
         </ul>
     </nav>
 
@@ -762,9 +773,9 @@ body {
             <h1 class="section-title">Kazanım Hedefini Seç</h1>
             <p class="section-subtitle">Aşağıdaki seçeneklerden birini tıklayarak kazanmaya başla.</p>
             <div class="selection-container">
-                <a href="#" class="selection-button blue-glow" data-duration="60" data-reward="60"><span class="button-text">60 Saniye İzle</span><span class="button-reward">+60 Coin</span></a>
-                <a href="#" class="selection-button purple-glow" data-duration="120" data-reward="120"><span class="button-text">120 Saniye İzle</span><span class="button-reward">+120 Coin</span></a>
-                <a href="#" class="selection-button green-glow" data-duration="180" data-reward="180"><span class="button-text">180 Saniye İzle</span><span class="button-reward">+180 Coin</span></a>
+                <a href="#" class="selection-button task-button blue-glow" data-duration="60" data-reward="60" data-task-type="İzle ve Kazan"><span class="button-text">60 Saniye İzle</span><span class="button-reward">+60 Coin</span></a>
+                <a href="#" class="selection-button task-button purple-glow" data-duration="120" data-reward="120" data-task-type="İzle ve Kazan"><span class="button-text">120 Saniye İzle</span><span class="button-reward">+120 Coin</span></a>
+                <a href="#" class="selection-button task-button green-glow" data-duration="180" data-reward="180" data-task-type="İzle ve Kazan"><span class="button-text">180 Saniye İzle</span><span class="button-reward">+180 Coin</span></a>
             </div>
         </div>
 
@@ -772,9 +783,9 @@ body {
             <h1 class="section-title">Abone Ol ve Kazan</h1>
             <p class="section-subtitle">Aşağıdaki seçeneklerden birini tıklayarak kazanmaya başla.</p>
             <div class="selection-container">
-                <a href="#" class="subscription-button sub-blue-glow" data-duration="60" data-reward="100"><span class="button-text">60 Saniye İzle + Abone Ol</span><span class="button-reward">+100 Coin</span></a>
-                <a href="#" class="subscription-button sub-purple-glow" data-duration="120" data-reward="200"><span class="button-text">120 Saniye İzle + Abone Ol</span><span class="button-reward">+200 Coin</span></a>
-                <a href="#" class="subscription-button sub-green-glow" data-duration="180" data-reward="300"><span class="button-text">180 Saniye İzle + Abone Ol</span><span class="button-reward">+300 Coin</span></a>
+                <a href="#" class="subscription-button task-button sub-blue-glow" data-duration="60" data-reward="100" data-task-type="Abone Ol ve Kazan"><span class="button-text">60 Saniye İzle + Abone Ol</span><span class="button-reward">+100 Coin</span></a>
+                <a href="#" class="subscription-button task-button sub-purple-glow" data-duration="120" data-reward="200" data-task-type="Abone Ol ve Kazan"><span class="button-text">120 Saniye İzle + Abone Ol</span><span class="button-reward">+200 Coin</span></a>
+                <a href="#" class="subscription-button task-button sub-green-glow" data-duration="180" data-reward="300" data-task-type="Abone Ol ve Kazan"><span class="button-text">180 Saniye İzle + Abone Ol</span><span class="button-reward">+300 Coin</span></a>
             </div>
         </div>
         
@@ -782,45 +793,187 @@ body {
             <h1 class="section-title">Beğeni ile Kazan</h1>
             <p class="section-subtitle">Aşağıdaki seçeneklerden birini tıklayarak kazanmaya başla.</p>
             <div class="selection-container">
-                <a href="#" class="like-button like-blue-glow" data-duration="60" data-reward="75"><span class="button-text">60 Saniye İzle + Beğen</span><span class="button-reward">+75 Coin</span></a>
-                <a href="#" class="like-button like-blue-glow" data-duration="120" data-reward="150"><span class="button-text">120 Saniye İzle + Beğen</span><span class="button-reward">+150 Coin</span></a>
-                <a href="#" class="like-button like-blue-glow" data-duration="180" data-reward="225"><span class="button-text">180 Saniye İzle + Beğen</span><span class="button-reward">+225 Coin</span></a>
+                <a href="#" class="like-button task-button like-blue-glow" data-duration="60" data-reward="75" data-task-type="Beğen ve Kazan"><span class="button-text">60 Saniye İzle + Beğen</span><span class="button-reward">+75 Coin</span></a>
+                <a href="#" class="like-button task-button like-blue-glow" data-duration="120" data-reward="150" data-task-type="Beğen ve Kazan"><span class="button-text">120 Saniye İzle + Beğen</span><span class="button-reward">+150 Coin</span></a>
+                <a href="#" class="like-button task-button like-blue-glow" data-duration="180" data-reward="225" data-task-type="Beğen ve Kazan"><span class="button-text">180 Saniye İzle + Beğen</span><span class="button-reward">+225 Coin</span></a>
             </div>
         </div>
 
         <div id="kesfet-paketi" class="content-page">
+            <div id="packages-particles-js"></div> 
+            
             <h1 class="section-title">Keşfet Paketleri</h1>
-            <p class="section-subtitle">Aşağıdaki paketleri inceleyerek kanalınızı büyütme yolunda ilk adımı atın.</p>
+            <p class="section-subtitle">Kanalınızı zirveye taşıyacak, özenle hazırlanmış paketlerimizle tanışın.</p>
+            
             <div class="packages-container">
                 <div class="package-card card-blue">
-                    <i class="fas fa-coins coin-icon"></i>
-                    <h2 class="package-title title-blue">Hafif Etkileşim</h2>
-                    <p class="package-description description-blue">Hedef kitlenize ulaşın, videolarınıza can verin ve potansiyel olarak izlenme ve beğeni sayınızı katlayın.</p>
-                    <p class="package-details details-blue">Etkileşim: 100 İzlenme, 100 Beğeni, 100 Yorum</p>
-                    <p class="package-cost cost-green">350 TL</p>
-                    <a href="#" class="buy-button button-blue">SATIN AL</a>
+                    <div>
+                        <h2 class="package-title title-blue">Hafif Etkileşim</h2>
+                        <p class="package-description">YouTube'a yeni başlayanlar için mükemmel bir başlangıç. Videolarınıza ilk can suyunu verin.</p>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> 100 Gerçek İzlenme</li>
+                            <li><i class="fas fa-check-circle"></i> 100 Kalıcı Beğeni</li>
+                            <li><i class="fas fa-check-circle"></i> 100 Alakalı Yorum</li>
+                        </ul>
+                    </div>
+                    <div class="package-footer"> 
+                        <p class="package-cost cost-green">350 TL</p>
+                        <a href="#" class="buy-button button-blue">SATIN AL</a>
+                        <div class="payment-logos">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </div>
+                        <div class="guarantee-badge">
+                            <i class="fas fa-shield-alt"></i> Gerçek Etkileşim Garantisi
+                        </div>
+                    </div>
                 </div>
 
-                <div class="package-card card-purple">
-                    <i class="fas fa-coins coin-icon"></i>
-                    <h2 class="package-title title-purple">Yoğun Etkileşim</h2>
-                    <p class="package-description description-purple">Kanalınızın büyüme hızını artırın, daha geniş kitlelere ulaşın ve etkileşim gücünüzü maksimize edin!</p>
-                    <p class="package-details details-purple">Etkileşim: 500 İzlenme, 500 Beğeni, 500 Yorum</p>
-                    <p class="package-cost cost-green">1250 TL</p>
-                    <a href="#" class="buy-button button-purple">SATIN AL</a>
+                <div class="package-card card-purple popular">
+                    <div>
+                        <div class="countdown-ribbon">
+                            <div class="countdown-content">
+                                <p>TEKLİF BİTİYOR</p>
+                                <div id="countdown-timer">
+                                    <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="popular-badge">En Popüler</div>
+                        <h2 class="package-title title-purple">Yoğun Etkileşim</h2>
+                        <p class="package-description">Büyüme hızınızı ciddiye alanlar için! Daha geniş kitlelere ulaşın ve fark edilin.</p>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> 500 Gerçek İzlenme</li>
+                            <li><i class="fas fa-check-circle"></i> 500 Kalıcı Beğeni</li>
+                            <li><i class="fas fa-check-circle"></i> 500 Alakalı Yorum</li>
+                            <li><i class="fas fa-star"></i> Videonuz Öne Çıkarılır</li>
+                        </ul>
+                    </div>
+                    <div class="package-footer"> 
+                        <p class="package-cost cost-green">1250 TL</p>
+                        <div class="social-proof">
+                            <i class="fas fa-users"></i> <b id="purchase-count">157</b> kişi bu paketi satın aldı!
+                        </div>
+                        <a href="#" class="buy-button button-purple">SATIN AL</a>
+                        <div class="payment-logos">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </div>
+                        <div class="guarantee-badge">
+                            <i class="fas fa-shield-alt"></i> Memnuniyet Garantisi
+                        </div>
+                    </div>
                 </div>
 
                 <div class="package-card card-green">
-                    <i class="fas fa-coins coin-icon"></i>
-                    <h2 class="package-title title-green">Maksimum Etkileşim</h2>
-                    <p class="package-description description-green">Kanalınızı zirveye taşıyın, en büyük sıçramayı yapın ve hedef kitlenizin en üst sıralarında yerinizi alın!</p>
-                    <p class="package-details details-green">Etkileşim: 1000 İzlenme, 1000 Beğeni, 1000 Yorum</p>
-                    <p class="package-cost cost-green">2150 TL</p>
-                    <a href="#" class="buy-button button-green">SATIN AL</a>
+                    <div>
+                        <h2 class="package-title title-green">Maksimum Etkileşim</h2>
+                        <p class="package-description">Zirveyi hedefleyen profesyoneller için. Rakiplerinizi geride bırakın ve trendlere girin.</p>
+                        <ul class="package-features">
+                            <li><i class="fas fa-check-circle"></i> 1000 Gerçek İzlenme</li>
+                            <li><i class="fas fa-check-circle"></i> 1000 Kalıcı Beğeni</li>
+                            <li><i class="fas fa-check-circle"></i> 1000 Alakalı Yorum</li>
+                            <li><i class="fas fa-rocket"></i> 24 Saat Hızlı Teslimat</li>
+                        </ul>
+                    </div>
+                    <div class="package-footer"> 
+                        <p class="package-cost cost-green">2150 TL</p>
+                        <a href="#" class="buy-button button-green">SATIN AL</a>
+                        <div class="payment-logos">
+                            <i class="fab fa-cc-visa"></i>
+                            <i class="fab fa-cc-mastercard"></i>
+                            <i class="fab fa-cc-amex"></i>
+                        </div>
+                        <div class="guarantee-badge">
+                            <i class="fas fa-shield-alt"></i> Gerçek Etkileşim Garantisi
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
 
+            <div class="testimonials-section">
+                <h2 class="section-title">Müşterilerimiz Ne Dedi?</h2>
+                <div class="testimonials-container">
+                    <div class="testimonial-card">
+                        <blockquote>"Yoğun Etkileşim paketini aldıktan sonra kanalımın büyümesi inanılmaz hızlandı. Kesinlikle tavsiye ederim!"</blockquote>
+                        <div class="author">- Oyun Canavarı</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <blockquote>"Başta tereddüt etmiştim ama gelen yorumlar ve beğeniler o kadar kaliteli ki... Teşekkürler Sosyal Power!"</blockquote>
+                        <div class="author">- Makyaj Günlüğü</div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="glowing-hr">
+            
+            <div class="faq-section">
+                <h2 class="section-title">Sıkça Sorulan Sorular</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Ödemeler güvenli mi?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Evet, tüm ödemeleriniz 256-bit SSL sertifikası ile korunan güvenli altyapılar üzerinden gerçekleştirilmektedir.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            <span>Etkileşimler bot hesaplardan mı geliyor?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Hayır, platformumuzdaki tüm etkileşimler sizin gibi gerçek ve aktif kullanıcılar tarafından sağlanır. Bu sayede kanalınız için bir risk oluşturmaz.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="glowing-hr">
+
+            <div class="contact-section">
+                <h2 class="section-title">İletişim</h2>
+                <p class="section-subtitle">Acil durumlar ve genel sorularınız için bize e-posta gönderebilirsiniz.</p>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> Sosyalpower@gmail.com</p>
+                </div>
+            </div>
+            </div> 
+        
+        <div id="destek-sistemi" class="content-page">
+            <h1 class="section-title">Destek Taleplerim</h1>
+            <p class="section-subtitle">Buradan yeni destek talebi oluşturabilir ve mevcut görüşmelerinizi takip edebilirsiniz.</p>
+
+            <div class="support-system-container">
+                <div class="conversation-history">
+                    <div class="message support-message">
+                        Merhaba, Sosyal Power destek sistemine hoş geldiniz! Size nasıl yardımcı olabiliriz?
+                    </div>
+                    <div class="message user-message">
+                        Merhaba, bir paket satın aldım ancak izlenmelerim henüz başlamadı.
+                    </div>
+                    <div class="message support-message">
+                        Elbette, sipariş numaranızı veya kayıtlı e-posta adresinizi paylaşabilir misiniz? Durumu hemen kontrol edelim.
+                    </div>
+                </div>
+                <form class="message-form" onsubmit="alert('Destek talebiniz gönderilemedi. Bu bölüm şu an sadece görsel bir tasarımdır.'); return false;">
+                    <div class="form-group">
+                        <label for="support-subject">Konu</label>
+                        <input type="text" id="support-subject" name="subject" placeholder="Örn: Sipariş Sorunu" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="support-message">Mesajınız</label>
+                        <textarea id="support-message" name="message" placeholder="Mesajınızı buraya yazın..." required></textarea>
+                    </div>
+                    <button type="submit">Destek Talebi Gönder</button>
+                </form>
+            </div>
+        </div>
         <div id="reklam-ver" class="content-page">
             <h1 class="section-title">Reklam Ver Bölümü</h1>
             <p class="section-subtitle">Bu bölüm yakında aktif olacaktır.</p>
@@ -847,10 +1000,10 @@ body {
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
     
-   <script src="assets/js/java.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    // === Elementleri Seçme ===
+document.addEventListener('DOMContentLoaded', () => {
+    
+    // === BÖLÜM 1: GENEL SAYFA ELEMENTLERİ VE DEĞİŞKENLERİ ===
     const menuIcon = document.querySelector('.menu-icon');
     const navPanel = document.querySelector('.nav-panel');
     const navLinks = document.querySelectorAll('.nav-link');
@@ -865,39 +1018,31 @@ body {
     const selectionButtons = document.querySelectorAll('.selection-button');
     const subscriptionButtons = document.querySelectorAll('.subscription-button');
     const likeButtons = document.querySelectorAll('.like-button');
+    const faqItems = document.querySelectorAll('.faq-item');
 
-    // === Değişkenler ===
     let player;
     let timerInterval;
     let selectedDuration = 0;
     let selectedReward = 0;
     let currentVideoIndex = 0;
-    const videoList = ["L_jWHffIx5E", "dQw4w9WgXcQ", "3JZ_D3ELwOQ"]; // İzletilecek YouTube video ID'leri
+    const videoList = ["L_jWHffIx5E", "dQw4w9WgXcQ", "3JZ_D3ELwOQ"];
 
-    // === Fonksiyonlar ===
+    // === BÖLÜM 2: FONKSİYONLAR ===
 
-    // Belirtilen ID'ye sahip sayfayı gösterir
     function showPage(pageId) {
         contentPages.forEach(page => { page.classList.remove('active'); });
         const pageToShow = document.getElementById(pageId);
         if (pageToShow) { pageToShow.classList.add('active'); }
-        if (pageId === 'anasayfa' && typeof particlesJS === 'function') {
-            initParticles();
-        }
+        if (pageId === 'anasayfa') initHomePageParticles();
+        if (pageId === 'kesfet-paketi') initPackagesParticles();
     }
 
-    // Aktif navigasyon linkini günceller
     function updateActiveNavLink(targetId) {
         navLinks.forEach(link => {
-            if (link.getAttribute('href') === `#${targetId}`) {
-                link.classList.add('active');
-            } else {
-                link.classList.remove('active');
-            }
+            link.classList.toggle('active', link.getAttribute('href') === `#${targetId}`);
         });
     }
 
-    // YouTube IFrame API'si hazır olduğunda bu fonksiyon çalışır
     window.onYouTubeIframeAPIReady = function() {
         player = new YT.Player('video-iframe', {
             events: {
@@ -908,7 +1053,7 @@ body {
                     loadNextVideo();
                 },
                 'onStateChange': (e) => {
-                    if (e.data === YT.PlayerState.CUED) { // Video yüklendiğinde başlat butonunu göster
+                    if (e.data === YT.PlayerState.CUED) {
                         startButton.classList.add('active');
                     }
                 }
@@ -916,17 +1061,15 @@ body {
         });
     };
 
-    // Saniyeyi "dakika:saniye" formatına çevirir
     function formatTime(s) {
         const m = Math.floor(s / 60);
         const rs = s % 60;
         return `${m.toString().padStart(2, '0')}:${rs.toString().padStart(2, '0')}`;
     }
 
-    // Video izleme sürecini hazırlar
     function prepareVideoProcess() {
         showPage('video-izle-section');
-        updateActiveNavLink('izle-kazan-section'); // Bu kısım dinamik hale getirilebilir
+        updateActiveNavLink('video-izle-section');
         if (videoList.length === 0) {
             alert("İzlenecek video kalmadı.");
             showPage('izle-kazan-section');
@@ -942,18 +1085,15 @@ body {
         completedButton.setAttribute('disabled', 'disabled');
     }
 
-    // Zamanlayıcıyı başlatır
     function startTimer() {
         let timeLeft = selectedDuration;
         clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             timeLeft--;
             timerText.textContent = formatTime(timeLeft);
-            // Zamanlayıcı rengini kalan süreye göre değiştir
             if (timeLeft <= 3) { timerText.className = 'timer-display timer-critical'; } 
             else if (timeLeft <= 10) { timerText.className = 'timer-display timer-warning'; }
             else { timerText.className = 'timer-display timer-normal'; }
-
             if (timeLeft <= 0) {
                 clearInterval(timerInterval);
                 timerText.textContent = "Tamamlandı!";
@@ -966,37 +1106,96 @@ body {
         }, 1000);
     }
 
-    // Sonraki videoyu yükler
     function loadNextVideo() {
         clearInterval(timerInterval);
         currentVideoIndex = (currentVideoIndex + 1) % videoList.length;
         prepareVideoProcess();
     }
     
-    // Önceki videoyu yükler
     function loadPrevVideo() {
         clearInterval(timerInterval);
         currentVideoIndex = (currentVideoIndex - 1 + videoList.length) % videoList.length;
         prepareVideoProcess();
     }
 
-    // Arka plan partikül animasyonunu başlatır
-    function initParticles() {
-        if(document.getElementById('particles-js')) {
-            particlesJS('particles-js', { "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#ffffff" }, "shape": { "type": "star", "stroke": { "width": 0, "color": "#000000" } }, "opacity": { "value": 0.5 }, "size": { "value": 3, "random": true }, "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 6, "direction": "none", "out_mode": "out" } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } }, "modes": { "repulse": { "distance": 100 }, "push": { "particles_nb": 4 } } }, "retina_detect": true });
+    function initHomePageParticles() {
+        if(document.getElementById('particles-js') && typeof particlesJS === 'function') {
+            particlesJS('particles-js', { particles: { number: { value: 80, density: { enable: true, value_area: 800 } }, color: { value: "#ffffff" }, shape: { type: "star", stroke: { width: 0, color: "#000000" } }, opacity: { value: 0.5 }, size: { value: 3, random: true }, line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 }, move: { enable: true, speed: 6, direction: "none", out_mode: "out" } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" } }, modes: { repulse: { distance: 100 }, push: { particles_nb: 4 } } }, retina_detect: true });
         }
     }
 
+    function initPackagesParticles() {
+        if (document.getElementById('packages-particles-js') && typeof particlesJS === 'function') {
+            particlesJS('packages-particles-js', { particles: { number: { value: 60, density: { enable: true, value_area: 800 } }, color: { value: "#ffffff" }, shape: { type: "circle" }, opacity: { value: 0.5, random: true }, size: { value: 3, random: true }, line_linked: { enable: true, distance: 150, color: "#9933FF", opacity: 0.4, width: 1 }, move: { enable: true, speed: 2, direction: "none", out_mode: "out" } }, interactivity: { detect_on: "canvas", events: { onhover: { enable: true, mode: "grab" }, onclick: { enable: true, mode: "push" } }, modes: { grab: { distance: 200, line_opacity: 1 }, push: { particles_nb: 4 } } }, retina_detect: true });
+        }
+    }
 
-    // === Olay Dinleyicileri (Event Listeners) ===
+    function setupFAQ() {
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const currentlyActive = document.querySelector('.faq-item.active');
+                if (currentlyActive && currentlyActive !== item) {
+                    currentlyActive.classList.remove('active');
+                    currentlyActive.querySelector('.faq-answer').style.maxHeight = 0;
+                }
+                item.classList.toggle('active');
+                const answer = item.querySelector('.faq-answer');
+                answer.style.maxHeight = item.classList.contains('active') ? answer.scrollHeight + "px" : 0;
+            });
+        });
+    }
 
-    // Sol menüyü açıp kapatma
+    function startCountdown() {
+        const countdownElement = document.getElementById('countdown-timer');
+        if (!countdownElement) return;
+
+        const countdownDate = new Date("Aug 30, 2025 23:59:59").getTime();
+
+        const interval = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = countdownDate - now;
+
+            if (distance < 0) {
+                clearInterval(interval);
+                countdownElement.innerHTML = "TEKLİF BİTTİ";
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = String(days).padStart(2, '0');
+            document.getElementById('hours').innerText = String(hours).padStart(2, '0');
+            document.getElementById('minutes').innerText = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').innerText = String(seconds).padStart(2, '0');
+        }, 1000);
+    }
+
+    function animatePurchaseCount() {
+        const purchaseCountElement = document.getElementById('purchase-count');
+        if (!purchaseCountElement) return;
+
+        let currentCount = parseInt(purchaseCountElement.innerText);
+
+        const interval = Math.random() * (10000 - 5000) + 5000; 
+
+        setTimeout(() => {
+            currentCount++;
+            purchaseCountElement.innerText = currentCount;
+            animatePurchaseCount(); 
+        }, interval);
+    }
+
+    // === BÖLÜM 3: OLAY DİNLEYİCİLERİ (EVENT LISTENERS) ===
+
     menuIcon.addEventListener('click', () => {
         navPanel.classList.toggle('open');
         menuIcon.classList.toggle('open');
     });
 
-    // Navigasyon linklerine tıklandığında ilgili sayfayı göster
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -1008,40 +1207,21 @@ body {
         });
     });
 
-    // "İzle ve Kazan" butonları
-    selectionButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectedDuration = parseInt(button.dataset.duration);
-            selectedReward = parseInt(button.dataset.reward);
-            completedButton.textContent = "İzle ve Kazan";
-            prepareVideoProcess();
+    function setupTaskButtonListeners(buttons, taskName) {
+        buttons.forEach(button => {
+            button.addEventListener('click', (e) => {
+                e.preventDefault();
+                selectedDuration = parseInt(button.dataset.duration);
+                selectedReward = parseInt(button.dataset.reward);
+                completedButton.textContent = `${taskName} ve Kazan`;
+                prepareVideoProcess();
+            });
         });
-    });
+    }
+    setupTaskButtonListeners(selectionButtons, 'İzle');
+    setupTaskButtonListeners(subscriptionButtons, 'Abone Ol');
+    setupTaskButtonListeners(likeButtons, 'Beğen');
 
-    // "Abone Ol ve Kazan" butonları
-    subscriptionButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectedDuration = parseInt(button.dataset.duration);
-            selectedReward = parseInt(button.dataset.reward);
-            completedButton.textContent = "Abone Ol ve Kazan";
-            prepareVideoProcess();
-        });
-    });
-
-    // "Beğen ve Kazan" butonları
-    likeButtons.forEach(button => {
-        button.addEventListener('click', (e) => {
-            e.preventDefault();
-            selectedDuration = parseInt(button.dataset.duration);
-            selectedReward = parseInt(button.dataset.reward);
-            completedButton.textContent = "Beğen ve Kazan";
-            prepareVideoProcess();
-        });
-    });
-
-    // Video başlatma butonu
     startButton.addEventListener('click', () => {
         if (player && typeof player.playVideo === 'function') {
             startButton.classList.remove('active');
@@ -1050,32 +1230,27 @@ body {
         }
     });
 
-    // "Tamamlandı" butonu
     completedButton.addEventListener('click', () => {
         if (!completedButton.classList.contains('active')) return;
         rewardMessage.querySelector('span').textContent = `+${selectedReward} Coin Kazandın!`;
         rewardMessage.classList.add('show');
-        // 3 saniye sonra mesajı gizle ve sonraki videoyu yükle
         setTimeout(() => {
             rewardMessage.classList.remove('show');
             loadNextVideo();
         }, 3000);
     });
     
-    // Sonraki/Önceki video butonları
     nextVideoButton.addEventListener('click', loadNextVideo);
     prevVideoButton.addEventListener('click', loadPrevVideo);
 
-
-    // === Sayfa İlk Yüklendiğinde ===
+    // === BÖLÜM 4: İLK YÜKLEME AYARLARI ===
     showPage('anasayfa');
     updateActiveNavLink('anasayfa');
+    setupFAQ();
+    startCountdown(); 
+    animatePurchaseCount();
 
 });
-        </script>
-                
+    </script>
 </body>
-
 </html>
-
-
