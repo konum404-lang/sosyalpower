@@ -460,7 +460,14 @@
         .package-cost {
             font-size: 1.8rem;
             font-weight: bold;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
+        }
+
+        .package-cost del {
+            font-size: 1.2rem;
+            color: #999;
+            margin-right: 10px;
+            font-weight: 400;
         }
 
         .cost-green { color: #39FF14; text-shadow: 0 0 8px #39FF14; }
@@ -478,6 +485,7 @@
             text-shadow: 0 0 3px; 
             position: relative; 
             overflow: hidden; 
+            margin-top: 15px;
         }
         .buy-button::before { content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent); transform: skewX(-30deg); transition: left 0.7s ease; }
         .buy-button:hover::before { left: 150%; }
@@ -507,10 +515,95 @@
         .package-features li .fa-rocket { color: #00E0FF; }
 
         .testimonials-section { margin-top: 100px; border-top: 2px solid rgba(0, 255, 255, 0.2); padding-top: 50px; }
-        .testimonials-container { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 40px; }
-        .testimonial-card { background-color: rgba(30, 30, 30, 0.5); border: 1px solid var(--pale-neon); padding: 25px; border-radius: 10px; max-width: 400px; box-shadow: 0 0 10px rgba(0, 255, 255, 0.2); }
-        .testimonial-card blockquote { font-style: italic; font-size: 1.1rem; color: #eee; border-left: 3px solid var(--bright-neon); padding-left: 15px; margin: 0 0 15px 0; }
-        .testimonial-card .author { font-weight: bold; color: var(--bright-neon); text-align: right; display: block; }
+        .testimonials-container { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 40px; }
+        
+        .testimonial-card { 
+            background-color: rgba(30, 30, 30, 0.5); 
+            border: 1px solid var(--pale-neon); 
+            padding: 30px; 
+            border-radius: 15px; 
+            max-width: 420px; 
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInSlideUp 0.8s ease-out forwards;
+        }
+
+        .testimonial-card:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        @keyframes fadeInSlideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .testimonial-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background-color: var(--bright-neon);
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: transform 0.4s ease-in-out;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.4);
+        }
+
+        .testimonial-card:hover::before {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        .testimonial-card blockquote { 
+            font-style: italic; 
+            font-size: 1.1rem; 
+            color: #eee; 
+            border-left: none; 
+            padding-left: 0; 
+            margin: 0 0 20px 0; 
+            position: relative;
+            z-index: 2;
+        }
+        
+        .author-info {
+            text-align: right;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card .author { 
+            font-weight: bold; 
+            color: var(--bright-neon); 
+            display: block; 
+        }
+
+        .purchased-package {
+            background-image: linear-gradient(45deg, #FFD700, #F0B90B);
+            color: #1a1a1a;
+            padding: 5px 15px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        .purchased-package i {
+            margin-right: 5px;
+        }
 
         .glowing-hr { border: 0; height: 2px; background-image: linear-gradient(to right, transparent, var(--bright-neon), transparent); margin: 80px auto; width: 80%; box-shadow: 0 0 10px var(--glow-color); }
         .faq-section { margin-top: 80px; padding-top: 50px; border-top: 2px solid rgba(153, 51, 255, 0.2); }
@@ -521,8 +614,7 @@
         .faq-item.active .faq-question i { transform: rotate(180deg); }
         .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out; }
         .faq-answer p { padding: 0 20px 20px 20px; font-size: 1rem; line-height: 1.6; color: #ccc; }
-        /* == KEŞFET PAKETİ BÖLÜMÜ BİTİŞ == */
-
+        
         .countdown-ribbon {
             position: absolute;
             top: 25px;
@@ -569,6 +661,7 @@
         .social-proof {
             font-size: 0.9rem;
             color: #ccc;
+            margin-top: 15px;
             margin-bottom: 15px;
             animation: pulse-white 3s infinite alternate;
         }
@@ -597,7 +690,6 @@
             margin-right: 5px;
         }
 
-        /* == YENİ EKLENEN/GÜNCELLENEN BÖLÜMLERİN STİLLERİ == */
         .payment-logos {
             margin-top: 20px;
             display: flex;
@@ -626,7 +718,6 @@
             margin-right: 10px;
         }
 
-        /* YENİ DESTEK SİSTEMİ STİLLERİ */
         .support-system-container {
             max-width: 800px;
             margin: 40px auto;
@@ -636,37 +727,6 @@
             padding: 25px;
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
             text-align: left;
-        }
-
-        .conversation-history {
-            height: 400px;
-            overflow-y: auto;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            border-radius: 10px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .message {
-            padding: 15px;
-            border-radius: 10px;
-            max-width: 70%;
-            line-height: 1.5;
-        }
-
-        .user-message {
-            background-color: #005f73;
-            color: #e9f5f9;
-            align-self: flex-end; /* Kullanıcı mesajları sağda */
-        }
-
-        .support-message {
-            background-color: #3d3d4d;
-            color: #e0e0e0;
-            align-self: flex-start; /* Destek mesajları solda */
         }
 
         .message-form .form-group {
@@ -725,6 +785,138 @@
             box-shadow: 0 0 20px rgba(57, 255, 20, 0.8);
         }
 
+        .money-back-guarantee {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .money-back-guarantee i {
+            color: #39FF14;
+            margin-right: 5px;
+        }
+        
+        .comparison-table-container {
+            margin: 100px auto;
+            max-width: 900px;
+            width: 95%;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: rgba(30, 30, 30, 0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(153, 51, 255, 0.3);
+            border: 1px solid rgba(153, 51, 255, 0.5);
+        }
+
+        .comparison-table th, .comparison-table td {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .comparison-table thead {
+            background-color: rgba(0,0,0,0.3);
+        }
+
+        .comparison-table th {
+            font-size: 1.2rem;
+            font-family: 'Orbitron', sans-serif;
+            color: #fff;
+        }
+        
+        .comparison-table th:first-child {
+            text-align: left;
+        }
+
+        .comparison-table tbody tr {
+            border-bottom: 1px solid rgba(153, 51, 255, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: tableRowFadeIn 0.5s ease-out forwards;
+        }
+
+        .comparison-table tbody tr:last-child {
+            border-bottom: none;
+        }
+        
+        .comparison-table tbody tr:nth-child(1) { animation-delay: 0.1s; }
+        .comparison-table tbody tr:nth-child(2) { animation-delay: 0.2s; }
+        .comparison-table tbody tr:nth-child(3) { animation-delay: 0.3s; }
+        .comparison-table tbody tr:nth-child(4) { animation-delay: 0.4s; }
+        .comparison-table tbody tr:nth-child(5) { animation-delay: 0.5s; }
+
+
+        @keyframes tableRowFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .comparison-table tbody td:first-child {
+            text-align: left;
+            font-weight: bold;
+            color: #ddd;
+        }
+
+        .comparison-table .icon-check {
+            color: #39FF14;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px #39FF14;
+        }
+        
+        .comparison-table .icon-cross {
+            color: #888;
+            font-size: 1.5rem;
+        }
+        
+        .comparison-table .icon-rocket {
+            color: #00E0FF;
+            font-size: 1.5rem;
+            text-shadow: 0 0 5px #00E0FF;
+        }
+
+        .live-proof-popup {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: rgba(10, 10, 10, 0.9);
+            backdrop-filter: blur(5px);
+            color: #fff;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid var(--pale-neon);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            z-index: 9999;
+            font-size: 0.95rem;
+            display: none;
+            animation: slideInFadeOut 6s ease-in-out;
+        }
+
+        .live-proof-popup.show {
+            display: block;
+        }
+
+        .live-proof-popup i {
+            color: var(--bright-neon);
+            margin-right: 10px;
+        }
+        
+        .live-proof-popup b {
+            font-weight: bold;
+            color: #fff;
+        }
+
+        @keyframes slideInFadeOut {
+            0% { transform: translateX(-100%); opacity: 0; }
+            15% { transform: translateX(0); opacity: 1; }
+            85% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(-100%); opacity: 0; }
+        }
 
     </style>
 </head>
@@ -817,16 +1009,12 @@
                         </ul>
                     </div>
                     <div class="package-footer"> 
-                        <p class="package-cost cost-green">350 TL</p>
+                        <p class="package-cost cost-green"><del>450 TL</del> 350 TL</p>
+                        <div class="social-proof">
+                            <i class="fas fa-users"></i> <b class="purchase-count" data-count="84">84</b> kişi bu paketi satın aldı!
+                        </div>
                         <a href="#" class="buy-button button-blue">SATIN AL</a>
-                        <div class="payment-logos">
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-amex"></i>
-                        </div>
-                        <div class="guarantee-badge">
-                            <i class="fas fa-shield-alt"></i> Gerçek Etkileşim Garantisi
-                        </div>
+                        <p class="money-back-guarantee"><i class="fas fa-shield-alt"></i> 3 Gün İçinde Sorgusuz İade Garantisi</p>
                     </div>
                 </div>
 
@@ -852,19 +1040,12 @@
                         </ul>
                     </div>
                     <div class="package-footer"> 
-                        <p class="package-cost cost-green">1250 TL</p>
+                        <p class="package-cost cost-green"><del>1500 TL</del> 1250 TL</p>
                         <div class="social-proof">
-                            <i class="fas fa-users"></i> <b id="purchase-count">157</b> kişi bu paketi satın aldı!
+                            <i class="fas fa-users"></i> <b class="purchase-count" data-count="157">157</b> kişi bu paketi satın aldı!
                         </div>
                         <a href="#" class="buy-button button-purple">SATIN AL</a>
-                        <div class="payment-logos">
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-amex"></i>
-                        </div>
-                        <div class="guarantee-badge">
-                            <i class="fas fa-shield-alt"></i> Memnuniyet Garantisi
-                        </div>
+                        <p class="money-back-guarantee"><i class="fas fa-shield-alt"></i> 3 Gün İçinde Sorgusuz İade Garantisi</p>
                     </div>
                 </div>
 
@@ -880,30 +1061,79 @@
                         </ul>
                     </div>
                     <div class="package-footer"> 
-                        <p class="package-cost cost-green">2150 TL</p>
+                        <p class="package-cost cost-green"><del>2500 TL</del> 2150 TL</p>
+                        <div class="social-proof">
+                            <i class="fas fa-users"></i> <b class="purchase-count" data-count="42">42</b> kişi bu paketi satın aldı!
+                        </div>
                         <a href="#" class="buy-button button-green">SATIN AL</a>
-                        <div class="payment-logos">
-                            <i class="fab fa-cc-visa"></i>
-                            <i class="fab fa-cc-mastercard"></i>
-                            <i class="fab fa-cc-amex"></i>
-                        </div>
-                        <div class="guarantee-badge">
-                            <i class="fas fa-shield-alt"></i> Gerçek Etkileşim Garantisi
-                        </div>
+                        <p class="money-back-guarantee"><i class="fas fa-shield-alt"></i> 3 Gün İçinde Sorgusuz İade Garantisi</p>
                     </div>
                 </div>
             </div>
+
+            <div class="comparison-table-container">
+                <h2 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Paket Karşılaştırması</h2>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Özellik</th>
+                            <th>Hafif Etkileşim</th>
+                            <th>Yoğun Etkileşim</th>
+                            <th>Maksimum Etkileşim</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Gerçek İzlenme</td>
+                            <td>100</td>
+                            <td>500</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>Kalıcı Beğeni</td>
+                            <td>100</td>
+                            <td>500</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>Alakalı Yorum</td>
+                            <td>100</td>
+                            <td>500</td>
+                            <td>1000</td>
+                        </tr>
+                        <tr>
+                            <td>Video Öne Çıkarma</td>
+                            <td><i class="fas fa-times icon-cross"></i></td>
+                            <td><i class="fas fa-check icon-check"></i></td>
+                            <td><i class="fas fa-check icon-check"></i></td>
+                        </tr>
+                        <tr>
+                            <td>24 Saat Hızlı Teslimat</td>
+                            <td><i class="fas fa-times icon-cross"></i></td>
+                            <td><i class="fas fa-times icon-cross"></i></td>
+                            <td><i class="fas fa-rocket icon-rocket"></i></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
 
             <div class="testimonials-section">
                 <h2 class="section-title">Müşterilerimiz Ne Dedi?</h2>
                 <div class="testimonials-container">
                     <div class="testimonial-card">
-                        <blockquote>"Yoğun Etkileşim paketini aldıktan sonra kanalımın büyümesi inanılmaz hızlandı. Kesinlikle tavsiye ederim!"</blockquote>
-                        <div class="author">- Oyun Canavarı</div>
+                        <blockquote>"Kanalım bir süredir yerinde sayıyordu. Yoğun Etkileşim paketini denedikten sonra hem izlenmelerim arttı hem de YouTube'un öneri algoritmasına daha sık girmeye başladım. Gelen yorumların kalitesi de beni şaşırttı. Kesinlikle yatırımına değdi."</blockquote>
+                        <div class="author-info">
+                            <div class="author">- Ahmet Y.</div>
+                            <div class="purchased-package"><i class="fas fa-star"></i> Yoğun Etkileşim Paketi</div>
+                        </div>
                     </div>
                     <div class="testimonial-card">
-                        <blockquote>"Başta tereddüt etmiştim ama gelen yorumlar ve beğeniler o kadar kaliteli ki... Teşekkürler Sosyal Power!"</blockquote>
-                        <div class="author">- Makyaj Günlüğü</div>
+                        <blockquote>"Yeni açtığım kanalıma hızlı bir başlangıç yapmak için 'Maksimum Etkileşim' paketini aldım. 24 saat içinde tüm etkileşimlerin tamamlanması ve tamamen gerçek kullanıcılardan gelmesi harika. Bu sayede ilk 1000 aboneme çok daha hızlı ulaştım. Teşekkürler!"</blockquote>
+                        <div class="author-info">
+                            <div class="author">- Elif K.</div>
+                            <div class="purchased-package"><i class="fas fa-star"></i> Maksimum Etkileşim Paketi</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -943,25 +1173,14 @@
                     <p><i class="fas fa-envelope"></i> Sosyalpower@gmail.com</p>
                 </div>
             </div>
-            </div> 
+        </div> 
         
         <div id="destek-sistemi" class="content-page">
             <h1 class="section-title">Destek Taleplerim</h1>
             <p class="section-subtitle">Buradan yeni destek talebi oluşturabilir ve mevcut görüşmelerinizi takip edebilirsiniz.</p>
 
             <div class="support-system-container">
-                <div class="conversation-history">
-                    <div class="message support-message">
-                        Merhaba, Sosyal Power destek sistemine hoş geldiniz! Size nasıl yardımcı olabiliriz?
-                    </div>
-                    <div class="message user-message">
-                        Merhaba, bir paket satın aldım ancak izlenmelerim henüz başlamadı.
-                    </div>
-                    <div class="message support-message">
-                        Elbette, sipariş numaranızı veya kayıtlı e-posta adresinizi paylaşabilir misiniz? Durumu hemen kontrol edelim.
-                    </div>
-                </div>
-                <form class="message-form" onsubmit="alert('Destek talebiniz gönderilemedi. Bu bölüm şu an sadece görsel bir tasarımdır.'); return false;">
+                <form class="message-form" id="support-form">
                     <div class="form-group">
                         <label for="support-subject">Konu</label>
                         <input type="text" id="support-subject" name="subject" placeholder="Örn: Sipariş Sorunu" required>
@@ -970,7 +1189,8 @@
                         <label for="support-message">Mesajınız</label>
                         <textarea id="support-message" name="message" placeholder="Mesajınızı buraya yazın..." required></textarea>
                     </div>
-                    <button type="submit">Destek Talebi Gönder</button>
+                    <button type="submit" id="submit-button">Destek Talebi Gönder</button>
+                    <p id="form-status" style="margin-top: 15px; color: var(--pale-neon);"></p>
                 </form>
             </div>
         </div>
@@ -996,6 +1216,10 @@
         </div>
 
     </main>
+
+    <div id="live-proof" class="live-proof-popup">
+        <p><i class="fas fa-check-circle"></i> Az önce <b>İstanbul'dan bir kullanıcı</b> 'Yoğun Etkileşim' paketi satın aldı.</p>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -1174,19 +1398,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 1000);
     }
 
-    function animatePurchaseCount() {
-        const purchaseCountElement = document.getElementById('purchase-count');
-        if (!purchaseCountElement) return;
+    function animatePurchaseCounters() {
+        const purchaseCountElements = document.querySelectorAll('.purchase-count');
+        if (!purchaseCountElements.length) return;
 
-        let currentCount = parseInt(purchaseCountElement.innerText);
+        purchaseCountElements.forEach(counter => {
+            let currentCount = parseInt(counter.dataset.count);
 
-        const interval = Math.random() * (10000 - 5000) + 5000; 
-
-        setTimeout(() => {
-            currentCount++;
-            purchaseCountElement.innerText = currentCount;
-            animatePurchaseCount(); 
-        }, interval);
+            const updateCounter = () => {
+                const interval = Math.random() * (15000 - 7000) + 7000; // 7-15 saniye arası
+                setTimeout(() => {
+                    currentCount++;
+                    counter.innerText = currentCount;
+                    updateCounter(); 
+                }, interval);
+            };
+            updateCounter();
+        });
     }
 
     // === BÖLÜM 3: OLAY DİNLEYİCİLERİ (EVENT LISTENERS) ===
@@ -1248,9 +1476,90 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveNavLink('anasayfa');
     setupFAQ();
     startCountdown(); 
-    animatePurchaseCount();
+    animatePurchaseCounters();
 
 });
     </script>
+    <script>
+    const supportForm = document.getElementById('support-form');
+    const submitButton = document.getElementById('submit-button');
+    const formStatus = document.getElementById('form-status');
+
+    if (supportForm) {
+        supportForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Formun sayfayı yenilemesini engelle
+
+            const subject = supportForm.querySelector('#support-subject').value;
+            const message = supportForm.querySelector('#support-message').value;
+
+            // Butonu devre dışı bırak ve durumu temizle
+            submitButton.disabled = true;
+            submitButton.textContent = 'Gönderiliyor...';
+            formStatus.textContent = '';
+
+            try {
+                // Netlify fonksiyonumuza isteği gönderiyoruz
+                const response = await fetch('/.netlify/functions/submit-ticket', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ subject, message }),
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    // Eğer sunucudan hata dönerse, hatayı fırlat
+                    throw new Error(result.message || 'Bir sunucu hatası oluştu.');
+                }
+
+                // Başarılı olursa...
+                formStatus.style.color = 'var(--bright-neon)';
+                formStatus.textContent = '✓ ' + result.message;
+                supportForm.reset(); // Formu temizle
+
+            } catch (error) {
+                // Hata yakalanırsa...
+                formStatus.style.color = '#FF6B6B'; // Hata için kırmızı renk
+                formStatus.textContent = '✗ Hata: ' + error.message;
+            } finally {
+                // İşlem bitince butonu tekrar aktif et
+                submitButton.disabled = false;
+                submitButton.textContent = 'Destek Talebi Gönder';
+            }
+        });
+    }
+</script>
+<script>
+    // Canlı Sosyal Kanıt Bildirimleri
+    const liveProofPopup = document.getElementById('live-proof');
+    const liveProofContent = liveProofPopup.querySelector('p');
+
+    const cities = ["İstanbul'dan", "Ankara'dan", "İzmir'den", "Bursa'dan", "Antalya'dan", "Adana'dan", "Konya'dan", "Gaziantep'ten"];
+    const userTypes = ["bir kullanıcı", "bir misafir"];
+    const packages = ["'Hafif Etkileşim'", "'Yoğun Etkileşim'", "'Maksimum Etkileşim'"];
+
+    function showLiveProof() {
+        const randomCity = cities[Math.floor(Math.random() * cities.length)];
+        const randomUserType = userTypes[Math.floor(Math.random() * userTypes.length)];
+        const randomPackage = packages[Math.floor(Math.random() * packages.length)];
+
+        liveProofContent.innerHTML = `<i class="fas fa-check-circle"></i> Az önce <b>${randomCity} ${randomUserType}</b> ${randomPackage} paketi satın aldı.`;
+        
+        liveProofPopup.classList.add('show');
+        
+        setTimeout(() => {
+            liveProofPopup.classList.remove('show');
+        }, 6000); // 6 saniye ekranda kal
+    }
+
+    // İlk bildirim 8 saniye sonra, sonrakiler 10-20 saniye arasında rastgele gelsin
+    setTimeout(() => {
+        showLiveProof();
+        setInterval(showLiveProof, Math.random() * (20000 - 10000) + 10000);
+    }, 8000);
+</script>
 </body>
 </html>
+
