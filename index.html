@@ -917,6 +917,117 @@
             85% { transform: translateX(0); opacity: 1; }
             100% { transform: translateX(-100%); opacity: 0; }
         }
+        /* == SEKMELİ PAKETLER BÖLÜMÜ İÇİN YENİ STİLLER == */
+.packages-tabs-nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    border-bottom: 2px solid rgba(0, 255, 255, 0.2);
+}
+
+.tab-link {
+    background: transparent;
+    border: none;
+    color: var(--pale-neon);
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    border-bottom: 4px solid transparent;
+}
+
+.tab-link:hover {
+    color: var(--bright-neon);
+}
+
+.tab-link.active {
+    color: var(--bright-neon);
+    border-bottom-color: var(--bright-neon);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+.tab-link i {
+    margin-right: 10px;
+}
+
+.packages-tab-content {
+    display: none;
+    animation: contentFadeIn 0.8s ease-out;
+}
+
+.packages-tab-content.active {
+    display: block;
+}
+
+@keyframes contentFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Popüler Altın Kart stilleri */
+.card-gold { border-color: #FFD700; box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+.card-gold:hover { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8), 0 0 40px rgba(255, 215, 0, 0.6); }
+.title-gold { color: #FFD700; text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700; }
+.description-gold { color: #FFFACD; text-shadow: 0 0 3px #FFD700, 0 0 5px #FFD700; }
+.cost-gold { color: #FFD700; text-shadow: 0 0 8px #FFD700; }
+.button-gold { border-color: #FFD700; color: #FFD700; animation: flicker-gold 1.5s ease-in-out infinite alternate; }
+.button-gold:hover { background-color: #FFD700; color: #000; transform: scale(1.1); text-shadow: none; animation: none; }
+@keyframes flicker-gold { 0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.6); text-shadow: 0 0 4px #FFD700; } 50% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.8); text-shadow: 0 0 8px #FFD700; } }
+
+/* Diğer renkler için maliyet ve açıklama stilleri */
+.cost-blue { color: #00FFFF; text-shadow: 0 0 8px #00FFFF; }
+.cost-purple { color: #C07CFF; text-shadow: 0 0 8px #C07CFF; }
+/* "Önce Dene!" yazısının görünür olması için */
+.package-card {
+    background-color: rgba(30, 30, 30, 0.5);
+    border-radius: 15px;
+    padding: 30px;
+    width: 350px;
+    text-align: center;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-width: 2px;
+    border-style: solid;
+    opacity: 0;
+    transform: translateY(40px);
+    animation: fadeInUp 0.8s ease-out forwards;
+    justify-content: space-between;
+}
+
+/* Fiyat ve buton arasına boşluk eklemek için */
+.package-cost {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 20px; 
+}
+.package-cost del {
+    font-size: 1.2rem;
+    color: #999;
+    margin-right: 10px;
+    font-weight: 400;
+}
+
+/* "Kalite Garantisi" metni için stil */
+.quality-guarantee {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-top: 20px;
+    font-style: italic;
+}
+.quality-guarantee i {
+    color: #39FF14;
+    margin-right: 5px;
+}
 
     </style>
 </head>
@@ -992,188 +1103,260 @@
         </div>
 
         <div id="kesfet-paketi" class="content-page">
-            <div id="packages-particles-js"></div> 
-            
-            <h1 class="section-title">Keşfet Paketleri</h1>
-            <p class="section-subtitle">Kanalınızı zirveye taşıyacak, özenle hazırlanmış paketlerimizle tanışın.</p>
-            
-            <div class="packages-container">
-                <div class="package-card card-blue">
-                    <div>
-                        <h2 class="package-title title-blue">Hafif Etkileşim</h2>
-                        <p class="package-description">YouTube'a yeni başlayanlar için mükemmel bir başlangıç. Videolarınıza ilk can suyunu verin.</p>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check-circle"></i> 100 Gerçek İzlenme</li>
-                            <li><i class="fas fa-check-circle"></i> 100 Kalıcı Beğeni</li>
-                            <li><i class="fas fa-check-circle"></i> 100 Alakalı Yorum</li>
-                        </ul>
-                    </div>
-                    <div class="package-footer"> 
-                        <p class="package-cost cost-green"><del>450 TL</del> 350 TL</p>
-                        <div class="social-proof">
-                            <i class="fas fa-users"></i> <b class="purchase-count" data-count="84">84</b> kişi bu paketi satın aldı!
-                        </div>
-                        <a href="#" class="buy-button button-blue">SATIN AL</a>
-                        <p class="money-back-guarantee"><i class="fas fa-shield-alt"></i> 3 Gün İçinde Sorgusuz İade Garantisi</p>
-                    </div>
-                </div>
+    <div id="packages-particles-js"></div> 
+    
+    <h1 class="section-title">Keşfet Paketleri</h1>
+    <p class="section-subtitle">Sosyal medyadaki yerinizi sağlamlaştıracak, hedefe yönelik paketlerimizle tanışın.</p>
+    
+    <div class="packages-tabs-nav">
+        <button class="tab-link active" data-tab="instagram">
+            <i class="fab fa-instagram"></i> Instagram Paketleri
+        </button>
+        <button class="tab-link" data-tab="youtube">
+            <i class="fab fa-youtube"></i> YouTube Paketleri
+        </button>
+    </div>
 
-                <div class="package-card card-purple popular">
-                    <div>
-                        <div class="countdown-ribbon">
-                            <div class="countdown-content">
-                                <p>TEKLİF BİTİYOR</p>
-                                <div id="countdown-timer">
-                                    <span id="days">00</span>:<span id="hours">00</span>:<span id="minutes">00</span>:<span id="seconds">00</span>
-                                </div>
-                            </div>
-                        </div>
+    <div id="instagram" class="packages-tab-content active">
+        <div class="packages-container">
 
-                        <div class="popular-badge">En Popüler</div>
-                        <h2 class="package-title title-purple">Yoğun Etkileşim</h2>
-                        <p class="package-description">Büyüme hızınızı ciddiye alanlar için! Daha geniş kitlelere ulaşın ve fark edilin.</p>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check-circle"></i> 500 Gerçek İzlenme</li>
-                            <li><i class="fas fa-check-circle"></i> 500 Kalıcı Beğeni</li>
-                            <li><i class="fas fa-check-circle"></i> 500 Alakalı Yorum</li>
-                            <li><i class="fas fa-star"></i> Videonuz Öne Çıkarılır</li>
-                        </ul>
-                    </div>
-                    <div class="package-footer"> 
-                        <p class="package-cost cost-green"><del>1500 TL</del> 1250 TL</p>
-                        <div class="social-proof">
-                            <i class="fas fa-users"></i> <b class="purchase-count" data-count="157">157</b> kişi bu paketi satın aldı!
-                        </div>
-                        <a href="#" class="buy-button button-purple">SATIN AL</a>
-                        <p class="money-back-guarantee"><i class="fas fa-shield-alt"></i> 3 Gün İçinde Sorgusuz İade Garantisi</p>
-                    </div>
-                </div>
-
-                <div class="package-card card-green">
-                    <div>
-                        <h2 class="package-title title-green">Maksimum Etkileşim</h2>
-                        <p class="package-description">Zirveyi hedefleyen profesyoneller için. Rakiplerinizi geride bırakın ve trendlere girin.</p>
-                        <ul class="package-features">
-                            <li><i class="fas fa-check-circle"></i> 1000 Gerçek İzlenme</li>
-                            <li><i class="fas fa-check-circle"></i> 1000 Kalıcı Beğeni</li>
-                            <li><i class="fas fa-check-circle"></i> 1000 Alakalı Yorum</li>
-                            <li><i class="fas fa-rocket"></i> 24 Saat Hızlı Teslimat</li>
-                        </ul>
-                    </div>
-                    <div class="package-footer"> 
-                        <p class="package-cost cost-green"><del>2500 TL</del> 2150 TL</p>
-                        <div class="social-proof">
-                            <i class="fas fa-users"></i> <b class="purchase-count" data-count="42">42</b> kişi bu paketi satın aldı!
-                        </div>
-                        <a href="#" class="buy-button button-green">SATIN AL</a>
-                        <p class="money-back-guarantee"><i class="fas fa-shield-alt"></i> 3 Gün İçinde Sorgusuz İade Garantisi</p>
-                    </div>
+            <div class="package-card card-gold popular">
+                <div class="popular-badge">Önce Dene!</div>
+                <h2 class="package-title title-gold">Kalite Test Paketi</h2>
+                <p class="package-description description-gold">Gerçek etkileşimin gücünü ve hizmet kalitemizi risksiz bir şekilde test edin. Reklamdan gelenlere özel başlangıç teklifi!</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 25 Gerçek Türk Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 10 Gerçek Hesaptan Repost</li>
+                    <li><i class="fas fa-star"></i> 3 Gerçek Yorum</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-gold">99 TL</p>
+                    <a href="#" class="buy-button button-gold">HEMEN DENE</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
                 </div>
             </div>
 
-            <div class="comparison-table-container">
-                <h2 class="section-title" style="font-size: 2rem; margin-bottom: 30px;">Paket Karşılaştırması</h2>
-                <table class="comparison-table">
-                    <thead>
-                        <tr>
-                            <th>Özellik</th>
-                            <th>Hafif Etkileşim</th>
-                            <th>Yoğun Etkileşim</th>
-                            <th>Maksimum Etkileşim</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Gerçek İzlenme</td>
-                            <td>100</td>
-                            <td>500</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>Kalıcı Beğeni</td>
-                            <td>100</td>
-                            <td>500</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>Alakalı Yorum</td>
-                            <td>100</td>
-                            <td>500</td>
-                            <td>1000</td>
-                        </tr>
-                        <tr>
-                            <td>Video Öne Çıkarma</td>
-                            <td><i class="fas fa-times icon-cross"></i></td>
-                            <td><i class="fas fa-check icon-check"></i></td>
-                            <td><i class="fas fa-check icon-check"></i></td>
-                        </tr>
-                        <tr>
-                            <td>24 Saat Hızlı Teslimat</td>
-                            <td><i class="fas fa-times icon-cross"></i></td>
-                            <td><i class="fas fa-times icon-cross"></i></td>
-                            <td><i class="fas fa-rocket icon-rocket"></i></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-            <div class="testimonials-section">
-                <h2 class="section-title">Müşterilerimiz Ne Dedi?</h2>
-                <div class="testimonials-container">
-                    <div class="testimonial-card">
-                        <blockquote>"Kanalım bir süredir yerinde sayıyordu. Yoğun Etkileşim paketini denedikten sonra hem izlenmelerim arttı hem de YouTube'un öneri algoritmasına daha sık girmeye başladım. Gelen yorumların kalitesi de beni şaşırttı. Kesinlikle yatırımına değdi."</blockquote>
-                        <div class="author-info">
-                            <div class="author">- Ahmet Y.</div>
-                            <div class="purchased-package"><i class="fas fa-star"></i> Yoğun Etkileşim Paketi</div>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <blockquote>"Yeni açtığım kanalıma hızlı bir başlangıç yapmak için 'Maksimum Etkileşim' paketini aldım. 24 saat içinde tüm etkileşimlerin tamamlanması ve tamamen gerçek kullanıcılardan gelmesi harika. Bu sayede ilk 1000 aboneme çok daha hızlı ulaştım. Teşekkürler!"</blockquote>
-                        <div class="author-info">
-                            <div class="author">- Elif K.</div>
-                            <div class="purchased-package"><i class="fas fa-star"></i> Maksimum Etkileşim Paketi</div>
-                        </div>
-                    </div>
+            <div class="package-card card-blue">
+                <h2 class="package-title title-blue">Etkileşim Kiti</h2>
+                <p class="package-description description-blue">Hesabınıza ilk can suyunu vermek, gönderilerinizi daha görünür kılmak ve organik büyüme için temel oluşturmak üzere tasarlandı.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 250 Gerçek Türk Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 50 Gerçek Takipçi</li>
+                    <li><i class="fas fa-star"></i> 20 Gönderi Odaklı Yorum</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-blue">699 TL</p>
+                    <a href="#" class="buy-button button-blue">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
                 </div>
             </div>
 
-            <hr class="glowing-hr">
-            
-            <div class="faq-section">
-                <h2 class="section-title">Sıkça Sorulan Sorular</h2>
-                <div class="faq-container">
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Ödemeler güvenli mi?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Evet, tüm ödemeleriniz 256-bit SSL sertifikası ile korunan güvenli altyapılar üzerinden gerçekleştirilmektedir.</p>
-                        </div>
-                    </div>
-                    <div class="faq-item">
-                        <button class="faq-question">
-                            <span>Etkileşimler bot hesaplardan mı geliyor?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </button>
-                        <div class="faq-answer">
-                            <p>Hayır, platformumuzdaki tüm etkileşimler sizin gibi gerçek ve aktif kullanıcılar tarafından sağlanır. Bu sayede kanalınız için bir risk oluşturmaz.</p>
-                        </div>
-                    </div>
+            <div class="package-card card-purple popular">
+                <div class="popular-badge">En Popüler</div>
+                <h2 class="package-title title-purple">Keşfet Gücü</h2>
+                <p class="package-description description-purple">Büyümesini ciddiye alanlar için en iyi değer! Keşfet'e düşme potansiyeli en yüksek hizmetleri bir araya getirdik.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 750 Gerçek Türk Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 150 Gerçek Takipçi</li>
+                    <li><i class="fas fa-star"></i> 50 Gönderi Odaklı Yorum</li>
+                    <li><i class="fas fa-rocket"></i> 10 Hikayede Paylaşım</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-purple">1,749 TL</p>
+                    <a href="#" class="buy-button button-purple">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
                 </div>
             </div>
 
-            <hr class="glowing-hr">
-
-            <div class="contact-section">
-                <h2 class="section-title">İletişim</h2>
-                <p class="section-subtitle">Acil durumlar ve genel sorularınız için bize e-posta gönderebilirsiniz.</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> Sosyalpower@gmail.com</p>
+            <div class="package-card card-green">
+                <h2 class="package-title title-green">Fenomen Paketi</h2>
+                <p class="package-description description-green">Zirveyi hedefleyen, maksimum etki ve prestij arayan profesyoneller için her şey dahil premium çözüm.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 2,000 Gerçek Türk Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 500 Gerçek Takipçi</li>
+                    <li><i class="fas fa-bullhorn"></i> 10 Hikayede Takip Önerisi</li>
+                    <li><i class="fas fa-globe-americas"></i> 20 İngilizce Yorum + Beğeni</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-green">6,499 TL</p>
+                    <a href="#" class="buy-button button-green">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
                 </div>
             </div>
-        </div> 
+
+            <div class="package-card card-blue">
+                <h2 class="package-title title-blue">Sosyal Kanıt Paketi</h2>
+                <p class="package-description description-blue">Yeni bir gönderinin boş görünmesini engelleyin. Anında temel güvenilirlik kazandırarak organik etkileşimi tetikleyin.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 150 Gerçek Türk Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 15 Gönderi Odaklı Yorum</li>
+                    <li><i class="fas fa-star"></i> 50 Anket Cevabı</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-blue">399 TL</p>
+                    <a href="#" class="buy-button button-blue">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-purple">
+                 <h2 class="package-title title-purple">Keşfet Bombası Paketi</h2>
+                <p class="package-description description-purple">Tek bir gönderiyi agresif bir şekilde Keşfet'e taşıyın ve viral potansiyelini en üst düzeye çıkarın.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-video"></i> 500 İzle + Beğen</li>
+                    <li><i class="fas fa-comments"></i> 50 Gerçek Yorum</li>
+                    <li><i class="fas fa-rocket"></i> 20 Hikayede Paylaşım</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-purple">1,349 TL</p>
+                    <a href="#" class="buy-button button-purple">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-green">
+                 <h2 class="package-title title-green">Lansman Gücü Paketi</h2>
+                <p class="package-description description-green">Ürün lansmanı, duyuru gibi yüksek profilli gönderilerde maksimum prestij ve otorite gösterin.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 1000 Gerçek Beğeni</li>
+                    <li><i class="fas fa-comments"></i> 100 Gerçek Yorum</li>
+                    <li><i class="fas fa-bullhorn"></i> 15 Hikayede Takip Önerisi</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-green">2,499 TL</p>
+                    <a href="#" class="buy-button button-green">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-blue">
+                <h2 class="package-title title-blue">Reels Viral Paketi</h2>
+                <p class="package-description description-blue">Sadece Instagram Reels içeriklerinizin algoritma tarafından fark edilmesini ve Keşfet'e düşme şansını artırmak için.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-video"></i> 500 İzle + Beğen</li>
+                    <li><i class="fas fa-comments"></i> 100 Gerçek Yorum</li>
+                    <li><i class="fas fa-rocket"></i> 25 Hikayede Paylaşım</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-blue">1,499 TL</p>
+                    <a href="#" class="buy-button button-blue">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-purple">
+                <h2 class="package-title title-purple">Hikaye Etkileşim Paketi</h2>
+                <p class="package-description description-purple">Ana gönderilerle uğraşmadan, sadece Instagram Hikayeleri'nde aktif ve popüler görünmek isteyenlere özel.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-eye"></i> 1,000 Hikaye Beğenisi</li>
+                    <li><i class="fas fa-user-plus"></i> 25 Hikayede Takip Önerisi</li>
+                    <li><i class="fas fa-history"></i> 500 (x3) Hikaye İzleme</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-purple">1,999 TL</p>
+                    <a href="#" class="buy-button button-purple">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-green">
+                <h2 class="package-title title-green">Uluslararası Kitle</h2>
+                <p class="package-description description-green">Global bir imaj çizin. Türkiye dışındaki kitlelere ulaşmak ve gönderilerinize uluslararası bir hava katmak için.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-globe-americas"></i> 250 Global Takipçi</li>
+                    <li><i class="fas fa-language"></i> 50 İngilizce Yorum + Beğeni</li>
+                    <li><i class="fas fa-plus"></i> 50 Diğer Yabancı Dil Yorum</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-green">1,899 TL</p>
+                    <a href="#" class="buy-button button-green">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-blue">
+                <h2 class="package-title title-blue">Etkileşimli Çekiliş</h2>
+                <p class="package-description description-blue">Çekiliş gönderilerinizin katılım şartlarını (takip, beğeni, yorum, etiket) yerine getirerek katılımı patlatın.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-comments"></i> 1000 Gerçek Yorum (Etiketlemeli)</li>
+                    <li><i class="fas fa-heart"></i> 2000 Gerçek Türk Beğeni</li>
+                    <li><i class="fas fa-share"></i> 50 Hikayede Paylaşım</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-blue">5,499 TL</p>
+                    <a href="#" class="buy-button button-blue">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+
+            <div class="package-card card-purple">
+                <h2 class="package-title title-purple">Aylık Büyüme Aboneliği</h2>
+                <p class="package-description description-purple">Her ay düzenli ve organik görünümlü bir büyüme. "Ne alsam?" diye düşünmeden hesabınızı bize emanet edin.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-calendar-alt"></i> Aylık 1500 Beğeni (Dağıtımlı)</li>
+                    <li><i class="fas fa-user-friends"></i> Aylık 250 Takipçi</li>
+                    <li><i class="fas fa-comment-dots"></i> Aylık 100 Yorum</li>
+                    <li><i class="fas fa-share-square"></i> Aylık 20 Hikaye Paylaşımı</li>
+                </ul>
+                <div class="package-footer">
+                    <p class="package-cost cost-purple">3,499 TL / Ay</p>
+                    <a href="#" class="buy-button button-purple">ABONE OL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="youtube" class="packages-tab-content">
+        <div class="packages-container">
+            <div class="package-card card-blue">
+                <h2 class="package-title title-blue">Hafif Etkileşim</h2>
+                <p class="package-description description-blue">YouTube'a yeni başlayanlar için mükemmel bir başlangıç. Videolarınıza ilk can suyunu verin.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 100 Gerçek İzlenme</li>
+                    <li><i class="fas fa-check-circle"></i> 100 Kalıcı Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 100 Alakalı Yorum</li>
+                </ul>
+                <div class="package-footer"> 
+                    <p class="package-cost cost-green"><del>450 TL</del> 350 TL</p>
+                    <a href="#" class="buy-button button-blue">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+            <div class="package-card card-purple popular">
+                <div class="popular-badge">En Popüler</div>
+                <h2 class="package-title title-purple">Yoğun Etkileşim</h2>
+                <p class="package-description description-purple">Büyüme hızınızı ciddiye alanlar için! Daha geniş kitlelere ulaşın ve fark edilin.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 500 Gerçek İzlenme</li>
+                    <li><i class="fas fa-check-circle"></i> 500 Kalıcı Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 500 Alakalı Yorum</li>
+                    <li><i class="fas fa-star"></i> Videonuz Öne Çıkarılır</li>
+                </ul>
+                <div class="package-footer"> 
+                    <p class="package-cost cost-green"><del>1500 TL</del> 1250 TL</p>
+                    <a href="#" class="buy-button button-purple">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+            <div class="package-card card-green">
+                <h2 class="package-title title-green">Maksimum Etkileşim</h2>
+                <p class="package-description description-green">Zirveyi hedefleyen profesyoneller için. Rakiplerinizi geride bırakın ve trendlere girin.</p>
+                <ul class="package-features">
+                    <li><i class="fas fa-check-circle"></i> 1000 Gerçek İzlenme</li>
+                    <li><i class="fas fa-check-circle"></i> 1000 Kalıcı Beğeni</li>
+                    <li><i class="fas fa-check-circle"></i> 1000 Alakalı Yorum</li>
+                    <li><i class="fas fa-rocket"></i> 24 Saat Hızlı Teslimat</li>
+                </ul>
+                <div class="package-footer"> 
+                    <p class="package-cost cost-green"><del>2500 TL</del> 2150 TL</p>
+                    <a href="#" class="buy-button button-green">SATIN AL</a>
+                    <p class="quality-guarantee"><i class="fas fa-shield-alt"></i> Kalite Garantisi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         
         <div id="destek-sistemi" class="content-page">
             <h1 class="section-title">Destek Taleplerim</h1>
@@ -1471,6 +1654,24 @@ document.addEventListener('DOMContentLoaded', () => {
     nextVideoButton.addEventListener('click', loadNextVideo);
     prevVideoButton.addEventListener('click', loadPrevVideo);
 
+    // === YENİ: PAKET SEKMELERİ FONKSİYONU ===
+    function setupPackageTabs() {
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const tabContents = document.querySelectorAll('.packages-tab-content');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const tabId = link.dataset.tab;
+
+                tabLinks.forEach(item => item.classList.remove('active'));
+                tabContents.forEach(item => item.classList.remove('active'));
+
+                link.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    }
+
     // === BÖLÜM 4: İLK YÜKLEME AYARLARI ===
     showPage('anasayfa');
     updateActiveNavLink('anasayfa');
@@ -1487,48 +1688,48 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (supportForm) {
         supportForm.addEventListener('submit', async (e) => {
-            e.preventDefault(); // Formun sayfayı yenilemesini engelle
+    e.preventDefault(); // Formun sayfayı yenilemesini engelle
 
-            const subject = supportForm.querySelector('#support-subject').value;
-            const message = supportForm.querySelector('#support-message').value;
+    const subject = supportForm.querySelector('#support-subject').value;
+    const message = supportForm.querySelector('#support-message').value;
 
-            // Butonu devre dışı bırak ve durumu temizle
-            submitButton.disabled = true;
-            submitButton.textContent = 'Gönderiliyor...';
-            formStatus.textContent = '';
+    // Butonu devre dışı bırak ve durumu temizle
+    submitButton.disabled = true;
+    submitButton.textContent = 'Gönderiliyor...';
+    formStatus.textContent = '';
 
-            try {
-                // Netlify fonksiyonumuza isteği gönderiyoruz
-                const response = await fetch('/.netlify/functions/submit-ticket', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ subject, message }),
-                });
-
-                const result = await response.json();
-
-                if (!response.ok) {
-                    // Eğer sunucudan hata dönerse, hatayı fırlat
-                    throw new Error(result.message || 'Bir sunucu hatası oluştu.');
-                }
-
-                // Başarılı olursa...
-                formStatus.style.color = 'var(--bright-neon)';
-                formStatus.textContent = '✓ ' + result.message;
-                supportForm.reset(); // Formu temizle
-
-            } catch (error) {
-                // Hata yakalanırsa...
-                formStatus.style.color = '#FF6B6B'; // Hata için kırmızı renk
-                formStatus.textContent = '✗ Hata: ' + error.message;
-            } finally {
-                // İşlem bitince butonu tekrar aktif et
-                submitButton.disabled = false;
-                submitButton.textContent = 'Destek Talebi Gönder';
-            }
+    try {
+        const response = await fetch('https://zsvtwfwszfrivzqekucv.supabase.co/functions/v1/submit-ticket', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdnR3ZndzemZyaXZ6cWVrdWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0NDI0ODksImV4cCI6MjA3MTAxODQ4OX0.d50gxJiYSP-NrthBnGxXhpn9WnUh9xycLYRMUV8o2ZA'
+            },
+            body: JSON.stringify({ subject, message }),
         });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            // Eğer sunucudan hata dönerse, hatayı fırlat
+            throw new Error(result.message || 'Bir sunucu hatası oluştu.');
+        }
+
+        // Başarılı olursa...
+        formStatus.style.color = 'var(--bright-neon)';
+        formStatus.textContent = '✓ ' + result.message;
+        supportForm.reset(); // Formu temizle
+
+    } catch (error) {
+        // Hata yakalanırsa...
+        formStatus.style.color = '#FF6B6B'; // Hata için kırmızı renk
+        formStatus.textContent = '✗ Hata: ' + error.message;
+    } finally {
+        // İşlem bitince butonu tekrar aktif et
+        submitButton.disabled = false;
+        submitButton.textContent = 'Destek Talebi Gönder';
+    }
+ });
     }
 </script>
 <script>
