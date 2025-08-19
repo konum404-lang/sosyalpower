@@ -1363,7 +1363,7 @@
             <p class="section-subtitle">Buradan yeni destek talebi oluşturabilir ve mevcut görüşmelerinizi takip edebilirsiniz.</p>
 
             <div class="support-system-container">
-                <form class="message-form" id="support-form">
+                <form name="destek-talepleri" class="message-form" id="support-form" data-netlify="true">
                     <div class="form-group">
                         <label for="support-subject">Konu</label>
                         <input type="text" id="support-subject" name="subject" placeholder="Örn: Sipariş Sorunu" required>
@@ -1681,86 +1681,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
     </script>
-    <script>
-    const supportForm = document.getElementById('support-form');
-    const submitButton = document.getElementById('submit-button');
-    const formStatus = document.getElementById('form-status');
-
-    if (supportForm) {
-        supportForm.addEventListener('submit', async (e) => {
-    e.preventDefault(); // Formun sayfayı yenilemesini engelle
-
-    const subject = supportForm.querySelector('#support-subject').value;
-    const message = supportForm.querySelector('#support-message').value;
-
-    // Butonu devre dışı bırak ve durumu temizle
-    submitButton.disabled = true;
-    submitButton.textContent = 'Gönderiliyor...';
-    formStatus.textContent = '';
-
-    try {
-        const response = await fetch('https://zsvtwfwszfrivzqekucv.supabase.co/functions/v1/submit-ticket', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpzdnR3ZndzemZyaXZ6cWVrdWN2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTU0NDI0ODksImV4cCI6MjA3MTAxODQ4OX0.d50gxJiYSP-NrthBnGxXhpn9WnUh9xycLYRMUV8o2ZA'
-            },
-            body: JSON.stringify({ subject, message }),
-        });
-
-        const result = await response.json();
-
-        if (!response.ok) {
-            // Eğer sunucudan hata dönerse, hatayı fırlat
-            throw new Error(result.message || 'Bir sunucu hatası oluştu.');
-        }
-
-        // Başarılı olursa...
-        formStatus.style.color = 'var(--bright-neon)';
-        formStatus.textContent = '✓ ' + result.message;
-        supportForm.reset(); // Formu temizle
-
-    } catch (error) {
-        // Hata yakalanırsa...
-        formStatus.style.color = '#FF6B6B'; // Hata için kırmızı renk
-        formStatus.textContent = '✗ Hata: ' + error.message;
-    } finally {
-        // İşlem bitince butonu tekrar aktif et
-        submitButton.disabled = false;
-        submitButton.textContent = 'Destek Talebi Gönder';
-    }
- });
-    }
-</script>
-<script>
-    // Canlı Sosyal Kanıt Bildirimleri
-    const liveProofPopup = document.getElementById('live-proof');
-    const liveProofContent = liveProofPopup.querySelector('p');
-
-    const cities = ["İstanbul'dan", "Ankara'dan", "İzmir'den", "Bursa'dan", "Antalya'dan", "Adana'dan", "Konya'dan", "Gaziantep'ten"];
-    const userTypes = ["bir kullanıcı", "bir misafir"];
-    const packages = ["'Hafif Etkileşim'", "'Yoğun Etkileşim'", "'Maksimum Etkileşim'"];
-
-    function showLiveProof() {
-        const randomCity = cities[Math.floor(Math.random() * cities.length)];
-        const randomUserType = userTypes[Math.floor(Math.random() * userTypes.length)];
-        const randomPackage = packages[Math.floor(Math.random() * packages.length)];
-
-        liveProofContent.innerHTML = `<i class="fas fa-check-circle"></i> Az önce <b>${randomCity} ${randomUserType}</b> ${randomPackage} paketi satın aldı.`;
-        
-        liveProofPopup.classList.add('show');
-        
-        setTimeout(() => {
-            liveProofPopup.classList.remove('show');
-        }, 6000); // 6 saniye ekranda kal
-    }
-
-    // İlk bildirim 8 saniye sonra, sonrakiler 10-20 saniye arasında rastgele gelsin
-    setTimeout(() => {
-        showLiveProof();
-        setInterval(showLiveProof, Math.random() * (20000 - 10000) + 10000);
-    }, 8000);
-</script>
+   
 </body>
 </html>
 
